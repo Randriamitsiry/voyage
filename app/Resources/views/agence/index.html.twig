@@ -1,51 +1,74 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Agences list</h1>
-
-    <table>
+    <h1>Liste des agences</h1>
+    <div class="form-group">
+        <div class="form-control">
+            <button data-toggle="modal" data-target="#modal_new" class="btn btn-primary">Nouvelle agence</button>
+        </div>
+    </div>
+    <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Nom</th>
                 <th>Adresse</th>
-                <th>Telephone</th>
-                <th>Siret</th>
-                <th>Email</th>
                 <th>Horaireouverture</th>
-                <th>Photo</th>
-                <th>Actions</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
         {% for agence in agences %}
             <tr>
-                <td><a href="{{ path('agence_show', { 'id': agence.id }) }}">{{ agence.id }}</a></td>
                 <td>{{ agence.nom }}</td>
                 <td>{{ agence.adresse }}</td>
-                <td>{{ agence.telephone }}</td>
-                <td>{{ agence.siret }}</td>
-                <td>{{ agence.email }}</td>
                 <td>{{ agence.horaireOuverture }}</td>
-                <td>{{ agence.photo }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('agence_show', { 'id': agence.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('agence_edit', { 'id': agence.id }) }}">edit</a>
-                        </li>
-                    </ul>
+                    <a href="{{ path('agence_show', { 'id': agence.id }) }}" class="fa fa-eye"></a>
+                    <a href="{{ path('agence_edit', { 'id': agence.id }) }}" class="fa fa-pencil"></a>
+                    <button type="button" data-toggle="modal" data-target="#modal_{{ agence.id }}"style="color: red !important;" class="fa fa-trash"></button>
+                    <div class="modal" tabindex="-1" role="dialog" id="modal_{{ agence.id }}">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Confirmer la suppression</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Voulez-vous vraiment supprimer cette agence ? L'action est irreversible</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <a class="btn btn-danger" href="{{ path('agence_delete', {'id':agence.id}) }}">Confirmer</a>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('agence_new') }}">Create a new agence</a>
-        </li>
-    </ul>
+
+    <div class="modal" tabindex="-1" role="dialog" id="modal_new">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Créer nouvelle agence</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {% form_theme form_new 'bootstrap_4_layout.html.twig' %}
+                    {{ render(controller(
+                        'AppBundle:Agence:new'
+                    )) }}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
+

@@ -30,7 +30,7 @@ class AgentType extends AbstractType
             ->add('visibleInternet', CheckboxType::class, ["label"=> "Visible sur internet?", "required"=>true])
             ->add('objectif')
             ->add('userid', EntityType::class, ['class'=>User::class, 'choice_label'=>"nomUtilisateur"])
-            ->add('agenceid', EntityType::class, ['class'=>Agence::class, 'choice__label'=> 'nom']);
+            ->add('agenceid', EntityType::class, ['class'=>Agence::class, 'choice_label'=> 'nom']);
     }/**
      * {@inheritdoc}
      */

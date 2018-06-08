@@ -1,16 +1,7 @@
-{% extends 'base.html.twig' %}
 
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
 {% block body %}
-    <h1>Agence creation</h1>
-
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" />
     {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('agence_index') }}">Back to the list</a>
-        </li>
-    </ul>
 {% endblock %}
