@@ -1,0 +1,127 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * EspacePersonnalise
+ *
+ * @ORM\Table(name="Espace_personnalise", indexes={@ORM\Index(name="FKEspace_per833917", columns={"Agentid"})})
+ * @ORM\Entity
+ */
+class EspacePersonnalise
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="passion_titre", type="string", length=100, nullable=true)
+     */
+    private $passionTitre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="passion_contenu", type="string", length=255, nullable=true)
+     */
+    private $passionContenu;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="destination_titre", type="string", length=100, nullable=true)
+     */
+    private $destinationTitre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="destination_contenu", type="string", length=255, nullable=true)
+     */
+    private $destinationContenu;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="formation_titre", type="string", length=100, nullable=true)
+     */
+    private $formationTitre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="formation_contenu", type="string", length=255, nullable=true)
+     */
+    private $formationContenu;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cursus_fr", type="string", length=255, nullable=true)
+     */
+    private $cursusFr;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cursus_solidaire", type="string", length=255, nullable=true)
+     */
+    private $cursusSolidaire;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cursus_en", type="string", length=255, nullable=true)
+     */
+    private $cursusEn;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="signature_tel", type="string", length=20, nullable=true)
+     */
+    private $signatureTel;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="signature_horaire_travail", type="string", length=255, nullable=true)
+     */
+    private $signatureHoraireTravail;
+
+    /**
+     * @var binary
+     *
+     * @ORM\Column(name="signature_visuel", type="binary", nullable=true)
+     */
+    private $signatureVisuel;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="phrase", type="string", length=255, nullable=true)
+     */
+    private $phrase;
+
+    /**
+     * @var \Agent
+     *
+     * @ORM\ManyToOne(targetEntity="Agent")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Agentid", referencedColumnName="id")
+     * })
+     */
+    private $agentid;
+
+
+}
+

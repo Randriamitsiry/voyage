@@ -1,0 +1,62 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Departement
+ *
+ * @ORM\Table(name="Departement", uniqueConstraints={@ORM\UniqueConstraint(name="code", columns={"code"})})
+ * @ORM\Entity
+ */
+class Departement
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="libelle", type="string", length=100, nullable=false)
+     */
+    private $libelle;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="code", type="string", length=3, nullable=false)
+     */
+    private $code;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Agence", inversedBy="departementid")
+     * @ORM\JoinTable(name="zone_chalandise",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="Departementid", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="Agenceid", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $agenceid;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->agenceid = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}
+

@@ -1,0 +1,109 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Agent
+ *
+ * @ORM\Table(name="Agent", uniqueConstraints={@ORM\UniqueConstraint(name="email", columns={"email"}), @ORM\UniqueConstraint(name="tel_directe", columns={"tel_directe"})}, indexes={@ORM\Index(name="FKAgent329510", columns={"Agenceid"}), @ORM\Index(name="FKAgent317157", columns={"Userid"})})
+ * @ORM\Entity
+ */
+class Agent
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="prenom", type="string", length=100, nullable=false)
+     */
+    private $prenom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=100, nullable=false)
+     */
+    private $nom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255, nullable=false)
+     */
+    private $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="initiales", type="string", length=5, nullable=false)
+     */
+    private $initiales;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tel_directe", type="string", length=20, nullable=false)
+     */
+    private $telDirecte;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="horaire", type="string", length=255, nullable=true)
+     */
+    private $horaire;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="photo", type="string", length=255, nullable=true)
+     */
+    private $photo;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="Visible_internet", type="boolean", nullable=false)
+     */
+    private $visibleInternet;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="Objectif", type="integer", nullable=false)
+     */
+    private $objectif;
+
+    /**
+     * @var \User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Userid", referencedColumnName="id")
+     * })
+     */
+    private $userid;
+
+    /**
+     * @var \Agence
+     *
+     * @ORM\ManyToOne(targetEntity="Agence")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Agenceid", referencedColumnName="id")
+     * })
+     */
+    private $agenceid;
+
+
+}
+

@@ -1,0 +1,54 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Paiement
+ *
+ * @ORM\Table(name="Paiement", uniqueConstraints={@ORM\UniqueConstraint(name="code", columns={"code"}), @ORM\UniqueConstraint(name="num_compte", columns={"num_compte"})})
+ * @ORM\Entity
+ */
+class Paiement
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="code", type="string", length=10, nullable=false)
+     */
+    private $code;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="libelle", type="string", length=50, nullable=false)
+     */
+    private $libelle;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="journal", type="string", length=20, nullable=false)
+     */
+    private $journal;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="num_compte", type="string", length=20, nullable=false)
+     */
+    private $numCompte;
+
+
+}
+
