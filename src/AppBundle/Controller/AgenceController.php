@@ -55,7 +55,7 @@ class AgenceController extends Controller
             $em->persist($agence);
             $em->flush();
 
-            return new Response("sumbmited");
+            return $this->redirectToRoute("agence_index");
         }
 
         return $this->render("agence/new.html.twig", ['form'=>$form->createView()]);
@@ -86,13 +86,13 @@ class AgenceController extends Controller
     public function editAction(Request $request, Agence $agence)
     {
         $deleteForm = $this->createDeleteForm($agence);
-        $editForm = $this->createForm('AppBundle\Form\AgenceType', $agence);
+        $editForm = $this->createForm(AgenceType::class, $agence);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('agence_edit', array('id' => $agence->getId()));
+            return $this->redirectToRoute('agence_index');
         }
 
         return $this->render('agence/edit.html.twig', array(

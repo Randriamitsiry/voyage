@@ -1,19 +1,12 @@
-{% extends 'base.html.twig' %}
+
 {% form_theme edit_form 'bootstrap_4_layout.html.twig' %}
 {% block body %}
-    <h1>Agence edit</h1>
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
 
     <div class="form-group row">
-        <input type="submit" value="Modifier" class="btn btn-primary col-2 fa fa-pencil" />
-        {{ form_start(delete_form) }}
-        <input type="submit" value="Supprimer" class="btn btn-danger col-sm-2 offset-1 fa fa-trash">
-        <a href="{{ path('agence_index') }}" class="col-2 offset-1">Retour à la liste</a>
-        {{ form_end(delete_form) }}
+        <input type="submit" value="Modifier" class=" form-control btn btn-primary" />
     </div>
     {{ form_end(edit_form) }}
-
-
 {% endblock %}
