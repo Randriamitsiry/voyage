@@ -17,7 +17,7 @@
     {% endblock %}
 
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini skin-blue-light">
 <div class="wrapper">
     <!-- Navbar -->
     {% block navigation %}
@@ -148,9 +148,9 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
         <a href="#" class="brand-link">
-            <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+            <img src="{{ asset('dist/img/logo.png') }}" alt="Logo route des voyagess" class="brand-image img-circle elevation-3"
                  style="opacity: .8">
-            <span class="brand-text font-weight-light">AdminLTE 3</span>
+            <span class="brand-text font-weight-light">ROUTE DES VOYAGES</span>
         </a>
 
         <!-- Sidebar -->
@@ -175,128 +175,187 @@
                             <i class="nav-icon fa fa-dashboard"></i>
                             <p>
                                 Dashboard
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-location-arrow"></i>
+                            <p>
+                                Agences
                                 <i class="right fa fa-angle-left"></i>
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>Dashboard v1</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link active">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>Dashboard v2</p>
+                                    <i class="fa fa-list nav-icon"></i>
+                                    <p>Tous les agences</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>Dashboard v3</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-th"></i>
-                            <p>
-                                Widgets
-                                <span class="right badge badge-danger">New</span>
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-pie-chart"></i>
-                            <p>
-                                Charts
-                                <i class="right fa fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>ChartJS</p>
+                                    <i class="fa fa-user-circle nav-icon"></i>
+                                    <p>Tous les agents</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>Flot</p>
+                                    <i class="fa fa-money nav-icon"></i>
+                                    <p>Moyens de paiement</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>Inline</p>
+                                    <i class="fa fa-credit-card nav-icon"></i>
+                                    <p>Cartes paiement</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-tree"></i>
+                            <i class="nav-icon fa fa-snowflake-o"></i>
                             <p>
-                                UI Elements
+                                Fournisseurs
                                 <i class="fa fa-angle-left right"></i>
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>General</p>
+                                    <i class="fa fa-fa nav-icon"></i>
+                                    <p>Tous les fournisseurs</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>Icons</p>
+                                    <i class="fa fa-american-sign-language-interpreting nav-icon"></i>
+                                    <p>Tous les interloculteurs</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>Buttons</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>Sliders</p>
+                                    <i class="fa fa-space-shuttle nav-icon"></i>
+                                    <p>Compagnies aeriennes</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-edit"></i>
+                            <i class="nav-icon fa fa-hand-o-right"></i>
                             <p>
-                                Forms
+                                Destinations
                                 <i class="fa fa-angle-left right"></i>
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>General Elements</p>
+                                    <i class="fa fa-globe nav-icon"></i>
+                                    <p>Continents</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>Advanced Elements</p>
+                                    <i class="fa fa-product-hunt nav-icon"></i>
+                                    <p>Pays</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>Editors</p>
+                                    <i class="fa fa-list nav-icon"></i>
+                                    <p>Villes</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="fa fa-asterisk nav-icon"></i>
+                                    <p>LIEUX (Focus regions)</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-star"></i>
+                            <p>
+                                Offre
+                                <i class="fa fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="fa fa-newspaper-o nav-icon"></i>
+                                    <p>Actualites</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="fa fa-at nav-icon"></i>
+                                    <p>Mise en avant</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="fa fa-book nav-icon"></i>
+                                    <p>Thèmes</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="fa fa-briefcase nav-icon"></i>
+                                    <p>Packages</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="fa fa-h-square nav-icon"></i>
+                                    <p>Hebergements</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="fa fa fa-thumbs-up nav-icon"></i>
+                                    <p>Itineraires types</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="fa fa-thumbs-o-up nav-icon"></i>
+                                    <p>Journees types</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="fa fa-share-square nav-icon"></i>
+                                    <p>Excursion</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="fa fa-server nav-icon"></i>
+                                    <p>Tarification</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="fa fa-bitcoin nav-icon"></i>
+                                    <p>Devises</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="fa fa-upload nav-icon"></i>
+                                    <p>Import</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="fa fa-list nav-icon"></i>
+                                    <p>Liste</p>
                                 </a>
                             </li>
                         </ul>
@@ -305,32 +364,37 @@
                         <a href="#" class="nav-link">
                             <i class="nav-icon fa fa-table"></i>
                             <p>
-                                Tables
+                                Partenaires
                                 <i class="fa fa-angle-left right"></i>
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>Simple Tables</p>
+                                    <i class="fa fa-asl-interpreting nav-icon"></i>
+                                    <p>Associations</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>Data Tables</p>
+                                    <i class="fa fa-address-book-o nav-icon"></i>
+                                    <p>Guides</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="fa fa-check nav-icon"></i>
+                                    <p>Partenairess du site</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-header">EXAMPLES</li>
+                    <li class="nav-header">AUTRES</li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-calendar"></i>
+                            <i class="nav-icon fa fa-comment-o"></i>
                             <p>
-                                Calendar
-                                <span class="badge badge-info right">2</span>
+                                Commentaire
                             </p>
                         </a>
                     </li>
@@ -338,131 +402,43 @@
                         <a href="#" class="nav-link">
                             <i class="nav-icon fa fa-envelope-o"></i>
                             <p>
-                                Mailbox
+                                Intranet
                                 <i class="fa fa-angle-left right"></i>
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>Inbox</p>
+                                    <i class="fa fa-gears nav-icon"></i>
+                                    <p>Données</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>Compose</p>
+                                    <i class="fa fa-address-book-o nav-icon"></i>
+                                    <p>Carnet de voyage</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>Read</p>
+                                    <i class="fa fa-file-code-o nav-icon"></i>
+                                    <p>Lexique</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="fa fa-file-pdf-o nav-icon"></i>
+                                    <p>Dossiers</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item has-treeview">
+                    <li class="nav-item">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-book"></i>
+                            <i class="nav-icon fa fa-file-pdf-o"></i>
                             <p>
-                                Pages
-                                <i class="fa fa-angle-left right"></i>
+                                Fichier généraux PDF
                             </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>Invoice</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>Profile</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>Login</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>Register</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>Lockscreen</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-plus-square-o"></i>
-                            <p>
-                                Extras
-                                <i class="fa fa-angle-left right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>Error 404</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>Error 500</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>Blank Page</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>Starter Page</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-header">MISCELLANEOUS</li>
-                    <li class="nav-item">
-                        <a href="https://adminlte.io/docs" class="nav-link">
-                            <i class="nav-icon fa fa-file"></i>
-                            <p>Documentation</p>
-                        </a>
-                    </li>
-                    <li class="nav-header">LABELS</li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-circle-o text-danger"></i>
-                            <p class="text">Important</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-circle-o text-warning"></i>
-                            <p>Warning</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-circle-o text-info"></i>
-                            <p>Informational</p>
                         </a>
                     </li>
                 </ul>
