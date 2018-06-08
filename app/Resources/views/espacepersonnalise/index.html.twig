@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Espacepersonnalises list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Passiontitre</th>
+                <th>Passioncontenu</th>
+                <th>Destinationtitre</th>
+                <th>Destinationcontenu</th>
+                <th>Formationtitre</th>
+                <th>Formationcontenu</th>
+                <th>Cursusfr</th>
+                <th>Cursussolidaire</th>
+                <th>Cursusen</th>
+                <th>Signaturetel</th>
+                <th>Signaturehorairetravail</th>
+                <th>Signaturevisuel</th>
+                <th>Phrase</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for espacePersonnalise in espacePersonnalises %}
+            <tr>
+                <td><a href="{{ path('espacepersonnalise_show', { 'id': espacePersonnalise.id }) }}">{{ espacePersonnalise.id }}</a></td>
+                <td>{{ espacePersonnalise.passionTitre }}</td>
+                <td>{{ espacePersonnalise.passionContenu }}</td>
+                <td>{{ espacePersonnalise.destinationTitre }}</td>
+                <td>{{ espacePersonnalise.destinationContenu }}</td>
+                <td>{{ espacePersonnalise.formationTitre }}</td>
+                <td>{{ espacePersonnalise.formationContenu }}</td>
+                <td>{{ espacePersonnalise.cursusFr }}</td>
+                <td>{{ espacePersonnalise.cursusSolidaire }}</td>
+                <td>{{ espacePersonnalise.cursusEn }}</td>
+                <td>{{ espacePersonnalise.signatureTel }}</td>
+                <td>{{ espacePersonnalise.signatureHoraireTravail }}</td>
+                <td>{{ espacePersonnalise.signatureVisuel }}</td>
+                <td>{{ espacePersonnalise.phrase }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('espacepersonnalise_show', { 'id': espacePersonnalise.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('espacepersonnalise_edit', { 'id': espacePersonnalise.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('espacepersonnalise_new') }}">Create a new espacePersonnalise</a>
+        </li>
+    </ul>
+{% endblock %}

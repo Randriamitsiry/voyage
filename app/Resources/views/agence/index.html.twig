@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Agences list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Adresse</th>
+                <th>Telephone</th>
+                <th>Siret</th>
+                <th>Email</th>
+                <th>Horaireouverture</th>
+                <th>Photo</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for agence in agences %}
+            <tr>
+                <td><a href="{{ path('agence_show', { 'id': agence.id }) }}">{{ agence.id }}</a></td>
+                <td>{{ agence.nom }}</td>
+                <td>{{ agence.adresse }}</td>
+                <td>{{ agence.telephone }}</td>
+                <td>{{ agence.siret }}</td>
+                <td>{{ agence.email }}</td>
+                <td>{{ agence.horaireOuverture }}</td>
+                <td>{{ agence.photo }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('agence_show', { 'id': agence.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('agence_edit', { 'id': agence.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('agence_new') }}">Create a new agence</a>
+        </li>
+    </ul>
+{% endblock %}

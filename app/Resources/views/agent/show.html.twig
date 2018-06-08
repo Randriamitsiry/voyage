@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Agent</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ agent.id }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ agent.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ agent.nom }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ agent.email }}</td>
+            </tr>
+            <tr>
+                <th>Initiales</th>
+                <td>{{ agent.initiales }}</td>
+            </tr>
+            <tr>
+                <th>Teldirecte</th>
+                <td>{{ agent.telDirecte }}</td>
+            </tr>
+            <tr>
+                <th>Horaire</th>
+                <td>{{ agent.horaire }}</td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                <td>{{ agent.photo }}</td>
+            </tr>
+            <tr>
+                <th>Visibleinternet</th>
+                <td>{% if agent.visibleInternet %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Objectif</th>
+                <td>{{ agent.objectif }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('agent_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('agent_edit', { 'id': agent.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

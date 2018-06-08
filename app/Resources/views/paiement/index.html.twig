@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Paiements list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Code</th>
+                <th>Libelle</th>
+                <th>Journal</th>
+                <th>Numcompte</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for paiement in paiements %}
+            <tr>
+                <td><a href="{{ path('paiement_show', { 'id': paiement.id }) }}">{{ paiement.id }}</a></td>
+                <td>{{ paiement.code }}</td>
+                <td>{{ paiement.libelle }}</td>
+                <td>{{ paiement.journal }}</td>
+                <td>{{ paiement.numCompte }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('paiement_show', { 'id': paiement.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('paiement_edit', { 'id': paiement.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('paiement_new') }}">Create a new paiement</a>
+        </li>
+    </ul>
+{% endblock %}
