@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -22,7 +23,9 @@ class AgenceType extends AbstractType
             ->add('email', EmailType::class)
             ->add('horaireOuverture')
             ->add('photo', FileType::class, ['data_class'=>null])
-            ->add('departementid', null, ['label'=>"Zones chalandise"]);
+            ->add('departementid', null, [
+                'label'=>"Zones chalandise",
+            ]);
     }/**
      * {@inheritdoc}
      */

@@ -1,8 +1,9 @@
 {% extends 'base.html.twig' %}
-
+{% block ariane %}
+    <li class="breadcrumb-item"><a href="#">Accueil</a></li>
+    <li class="breadcrumb-item active">Agence</li>
+{% endblock %}
 {% block body %}
-
-
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -22,7 +23,8 @@
                         <tr>
                             <th>Nom</th>
                             <th>Adresse</th>
-                            <th>Horaireouverture</th>
+                            <th>Horaire d'ouverture</th>
+                            <th>Agent(s)</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -32,6 +34,11 @@
                                 <td>{{ agence.nom }}</td>
                                 <td>{{ agence.adresse }}</td>
                                 <td>{{ agence.horaireOuverture }}</td>
+                                <td>
+                                    <a href="{{ path('agent_index', {'agence':agence.id}) }}">
+                                        agent(s)
+                                    </a>
+                                </td>
                                 <td>
                                     <button data-toggle="modal" data-target="#modal_show_{{ agence.id }}" class="fa fa-eye"></button>
                                     <button data-toggle="modal" data-target="#modal_edit_{{ agence.id }}" class="fa fa-pencil"></button>

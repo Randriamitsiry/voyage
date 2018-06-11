@@ -1,64 +1,41 @@
-{% extends 'base.html.twig' %}
-
 {% block body %}
-    <h1>Agent</h1>
-
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ agent.id }}</td>
-            </tr>
-            <tr>
-                <th>Prenom</th>
-                <td>{{ agent.prenom }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ agent.nom }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ agent.email }}</td>
-            </tr>
-            <tr>
-                <th>Initiales</th>
-                <td>{{ agent.initiales }}</td>
-            </tr>
-            <tr>
-                <th>Teldirecte</th>
-                <td>{{ agent.telDirecte }}</td>
-            </tr>
-            <tr>
-                <th>Horaire</th>
-                <td>{{ agent.horaire }}</td>
-            </tr>
-            <tr>
-                <th>Photo</th>
-                <td>{{ agent.photo }}</td>
-            </tr>
-            <tr>
-                <th>Visibleinternet</th>
-                <td>{% if agent.visibleInternet %}Yes{% else %}No{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Objectif</th>
-                <td>{{ agent.objectif }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('agent_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('agent_edit', { 'id': agent.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <div class="card card-widget widget-user">
+        <!-- Add the bg color to the header using any of the bg-* classes -->
+        <div class="widget-user-header bg-info-active">
+            <h2 class="widget-user-username">{{ agent.nom ~ " " ~  agent.prenom}}</h2>
+            <h3>[{{ agent.initiales }}]</h3>
+            <h5 class="widget-user-desc">{{ agent.agenceid.nom }}</h5>
+        </div>
+        <div class="widget-user-image">
+            <img class="img-circle elevation-8" src="{{ asset('images/agent/'~agent.photo) }}" alt="Photo de l'agent" style="width: 100px !important; height: 100px !important; border-radius: 70% !important;">
+        </div>
+        <div class="card-footer">
+            <div class="row">
+                <div class="col-sm-4 border-right">
+                    <div class="description-block">
+                        <h5 class="description-header">Telephone</h5>
+                        <span class="description-text">{{ agent.telDirecte }}</span>
+                    </div>
+                    <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 border-right">
+                    <div class="description-block">
+                        <h5 class="description-header">Objectif</h5>
+                        <span class="description-text">{{ agent.objectif }}</span>
+                    </div>
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4">
+                    <div class="description-block">
+                        <h5 class="description-header">Horaires</h5>
+                        <span class="description-text">{{ agent.horaire }}</span>
+                    </div>
+                    <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+    </div>
 {% endblock %}

@@ -52,7 +52,11 @@ class AgenceController extends Controller
         $form->add("Enregistrer", SubmitType::class);
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
+            foreach ($agence->getDepartementid() as $dep) {
+                $dep->addAgenceid($agence);
+            }
             $em->persist($agence);
+            $em->persist($dep);
             $em->flush();
 
             return $this->redirectToRoute("agence_index");

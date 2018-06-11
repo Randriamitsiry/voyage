@@ -150,4 +150,9 @@ class Departement
     {
         return $this->agenceid;
     }
+
+    public function __toString()
+    {
+        return $this->libelle;
+    }
 }

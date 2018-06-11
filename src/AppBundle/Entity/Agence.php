@@ -276,7 +276,7 @@ class Agence
     public function addDepartementid(\AppBundle\Entity\Departement $departementid)
     {
         $this->departementid[] = $departementid;
-
+        $departementid->addAgenceid($this);
         return $this;
     }
 

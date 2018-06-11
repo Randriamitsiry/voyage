@@ -27,10 +27,9 @@ class AgentType extends AbstractType
             ->add('telDirecte', TextType::class, ['label'=>"Telephone"])
             ->add('horaire')
             ->add('photo', FileType::class, ['data_class'=>null])
-            ->add('visibleInternet', CheckboxType::class, ["label"=> "Visible sur internet?", "required"=>true])
+            ->add('visibleInternet', CheckboxType::class, ["label"=> "Visible sur internet?", "required"=>false])
             ->add('objectif')
-            ->add('userid', EntityType::class, ['class'=>User::class, 'choice_label'=>"nomUtilisateur"])
-            ->add('agenceid', EntityType::class, ['class'=>Agence::class, 'choice_label'=> 'nom']);
+            ->add('agenceid', EntityType::class, ['class'=>Agence::class, 'choice_label'=> 'nom', 'label'=>"Agence"]);
     }/**
      * {@inheritdoc}
      */

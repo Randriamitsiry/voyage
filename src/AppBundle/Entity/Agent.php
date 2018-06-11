@@ -3,12 +3,14 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Agent
  *
  * @ORM\Table(name="Agent", uniqueConstraints={@ORM\UniqueConstraint(name="email", columns={"email"}), @ORM\UniqueConstraint(name="tel_directe", columns={"tel_directe"})}, indexes={@ORM\Index(name="FKAgent329510", columns={"Agenceid"}), @ORM\Index(name="FKAgent317157", columns={"Userid"})})
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
  */
 class Agent
 {
@@ -378,5 +380,22 @@ class Agent
     public function getAgenceid()
     {
         return $this->agenceid;
+    }
+
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function uploadPhoto()
+    {
+        if ($this->getPhoto() instanceof UploadedFile) {
+            $fileName = md5(uniqid()).'.'.$this->getPhoto()->guessExtension();
+            try {
+                $this->photo->move("../web/images/agent", $fileName);
+            } catch (\Exception $exception) {
+                throw $exception;
+            }
+            $this->setPhoto($fileName);
+        }
     }
 }

@@ -3,9 +3,13 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Agent;
+use AppBundle\Form\AgentType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Agent controller.
@@ -17,14 +21,17 @@ class AgentController extends Controller
     /**
      * Lists all agent entities.
      *
-     * @Route("/", name="agent_index")
+     * @Route("/{agence}", name="agent_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction($agence = null)
     {
         $em = $this->getDoctrine()->getManager();
-
-        $agents = $em->getRepository('AppBundle:Agent')->findAll();
+        if ($agence == null) {
+            $agents = $em->getRepository(Agent::class)->findAll();
+        } else {
+            $agents = $em->getRepository(Agent::class)->findBy(['agenceid'=>$agence]);
+        }
 
         return $this->render('agent/index.html.twig', array(
             'agents' => $agents,
@@ -40,7 +47,8 @@ class AgentController extends Controller
     public function newAction(Request $request)
     {
         $agent = new Agent();
-        $form = $this->createForm('AppBundle\Form\AgentType', $agent);
+        $form = $this->createForm('AppBundle\Form\AgentType', $agent, ['action'=>$this->generateUrl("agent_new")]);
+        $form->add("Enregistrer", SubmitType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -48,7 +56,7 @@ class AgentController extends Controller
             $em->persist($agent);
             $em->flush();
 
-            return $this->redirectToRoute('agent_show', array('id' => $agent->getId()));
+            return $this->redirectToRoute('agent_index');
         }
 
         return $this->render('agent/new.html.twig', array(
@@ -82,13 +90,12 @@ class AgentController extends Controller
     public function editAction(Request $request, Agent $agent)
     {
         $deleteForm = $this->createDeleteForm($agent);
-        $editForm = $this->createForm('AppBundle\Form\AgentType', $agent);
+        $editForm = $this->createForm('AppBundle\Form\AgentType', $agent, ['action'=>$this->generateUrl('agent_edit', ['id'=>$agent->getId()])]);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('agent_edit', array('id' => $agent->getId()));
+            return $this->redirectToRoute('agent_index');
         }
 
         return $this->render('agent/edit.html.twig', array(
@@ -101,21 +108,20 @@ class AgentController extends Controller
     /**
      * Deletes a agent entity.
      *
-     * @Route("/{id}", name="agent_delete")
-     * @Method("DELETE")
+     * @Route("/delete/{id}", name="agent_delete")
      */
     public function deleteAction(Request $request, Agent $agent)
     {
-        $form = $this->createDeleteForm($agent);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
+        try {
             $em = $this->getDoctrine()->getManager();
             $em->remove($agent);
             $em->flush();
-        }
 
-        return $this->redirectToRoute('agent_index');
+            return $this->redirectToRoute('agent_index');
+        } catch (\Exception $exception) {
+
+            return new Response("Impossible de supprimer l'enregistrement : ".$exception->getMessage());
+        }
     }
 
     /**
