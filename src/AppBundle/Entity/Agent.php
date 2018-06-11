@@ -106,6 +106,10 @@ class Agent
      */
     private $agenceid;
 
+    /**
+     * @ORM\OneToOne(targetEntity="EspacePersonnalise", mappedBy="agentid")
+     */
+    private $espacepersonnalise;
 
 
     /**
@@ -397,5 +401,13 @@ class Agent
             }
             $this->setPhoto($fileName);
         }
+    }
+
+    /**
+     * convert Agent to string
+     */
+    public function __toString()
+    {
+        return $this->getNom() . " ".$this->getPrenom();
     }
 }

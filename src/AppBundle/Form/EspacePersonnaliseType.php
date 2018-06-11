@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,7 +14,19 @@ class EspacePersonnaliseType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('passionTitre')->add('passionContenu')->add('destinationTitre')->add('destinationContenu')->add('formationTitre')->add('formationContenu')->add('cursusFr')->add('cursusSolidaire')->add('cursusEn')->add('signatureTel')->add('signatureHoraireTravail')->add('signatureVisuel')->add('phrase')->add('agentid');
+        $builder->add('passionTitre')
+            ->add('passionContenu', TextareaType::class)
+            ->add('destinationTitre')
+            ->add('destinationContenu', TextareaType::class)
+            ->add('formationTitre')
+            ->add('formationContenu', TextareaType::class)
+            ->add('cursusFr', TextareaType::class, ['label'=>"Cursus en version française"])
+            ->add('cursusEn', TextareaType::class, ['label'=>"Cursus en version anglaise"])
+            ->add('cursusSolidaire', TextareaType::class, ['label'=>"Cursus solidaire"])
+            ->add('signatureTel')
+            ->add('signatureHoraireTravail')
+            ->add('signatureVisuel')
+            ->add('phrase',null, ['label'=>"Phrase d'accroche"]);
     }/**
      * {@inheritdoc}
      */

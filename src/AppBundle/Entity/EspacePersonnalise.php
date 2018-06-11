@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * EspacePersonnalise
  *
- * @ORM\Table(name="Espace_personnalise", indexes={@ORM\Index(name="FKEspace_per833917", columns={"Agentid"})})
+ * @ORM\Table(name="Espace_personnalise")
  * @ORM\Entity
  */
 class EspacePersonnalise
@@ -115,14 +115,14 @@ class EspacePersonnalise
     /**
      * @var \Agent
      *
-     * @ORM\ManyToOne(targetEntity="Agent")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="Agentid", referencedColumnName="id")
-     * })
+     * @ORM\OneToOne(targetEntity="Agent", inversedBy="espacepersonnalise")
      */
     private $agentid;
 
+    public function __construct()
+    {
 
+    }
 
     /**
      * Get id
@@ -468,5 +468,10 @@ class EspacePersonnalise
     public function getAgentid()
     {
         return $this->agentid;
+    }
+
+    public function __toString()
+    {
+        return "EP-" .$this->getAgentid();
     }
 }

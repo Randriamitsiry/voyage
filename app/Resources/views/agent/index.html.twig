@@ -30,7 +30,10 @@
                         <tbody>
                         {% for agent in agents %}
                             <tr>
-                                <td>{{ agent.nom }}</td>
+                                <td>
+                                    {{ agent.nom }}
+                                    <a href="{{ path('espace_personnalise', {'id': agent.id}) }}" class="fa fa-info-circle" ></a>
+                                </td>
                                 <td>{{ agent.prenom }}</td>
                                 <td>
                                     <a href="#" data-toggle="modal" data-target="#modal_show_agence_{{ agent.agenceid.id }}">
@@ -58,6 +61,7 @@
                                     <button data-toggle="modal" data-target="#modal_show_{{ agent.id }}" class="fa fa-eye"></button>
                                     <button data-toggle="modal" data-target="#modal_edit_{{ agent.id }}" class="fa fa-pencil"></button>
                                     <button type="button" data-toggle="modal" data-target="#modal_{{ agent.id }}"style="color: red !important;" class="fa fa-trash"></button>
+
                                     <div class="modal" tabindex="-1" role="dialog" id="modal_{{ agent.id }}">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
