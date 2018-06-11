@@ -30,7 +30,7 @@ class AgenceController extends Controller
         $em = $this->getDoctrine()->getManager();
         $agences = $em->getRepository(Agence::class)->findAll();
         $agence = new Agence();
-        $form = $this->createForm(AgenceType::class, $agence);
+        $form = $this->createForm(AgenceType::class, $agence, ['action'=>$this->generateUrl("agence_new")]);
 
         return $this->render('agence/index.html.twig', array(
             'agences' => $agences,
@@ -48,7 +48,7 @@ class AgenceController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $agence = new Agence();
-        $form = $this->createForm(AgenceType::class, $agence);
+        $form = $this->createForm(AgenceType::class, $agence, ['action'=>$this->generateUrl("agence_new")]);
         $form->add("Enregistrer", SubmitType::class);
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
@@ -83,14 +83,16 @@ class AgenceController extends Controller
      * @Route("/{id}/edit", name="agence_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Agence $agence)
+    public function editAction(Request $request, $id)
     {
+        $em = $this->getDoctrine()->getManager();
+        $agence = $em->getRepository(Agence::class)->find($id);
         $deleteForm = $this->createDeleteForm($agence);
-        $editForm = $this->createForm(AgenceType::class, $agence);
+        $editForm = $this->createForm(AgenceType::class, $agence, ['action'=>$this->generateUrl("agence_edit", ['id'=>$agence->getId()])]);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $em->flush();
 
             return $this->redirectToRoute('agence_index');
         }

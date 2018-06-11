@@ -1,10 +1,56 @@
 
 
 {% block body %}
-    <div class="card" style="width: 100%;">
-        <img class="card-img-top" src="{{ asset('images/agence/'~agence.photo) }}" alt="Card image cap">
-        <div class="card-body">
-            <p class="card-text">Details à propos de l'agence</p>
+    <div class="card card-widget widget-user">
+        <!-- Add the bg color to the header using any of the bg-* classes -->
+        <div class="widget-user-header bg-info-active">
+            <h3 class="widget-user-username">{{ agence.nom }}</h3>
+            <h5 class="widget-user-desc">{{ agence.adresse }}</h5>
+            <h6> tel : {{ agence.telephone }}</h6>
+        </div>
+        <div class="widget-user-image">
+            <img class="img-circle elevation-8" src="{{ asset('images/agence/'~agence.photo) }}" alt="Photo de l'agence" style="width: 100px !important; height: 100px !important; border-radius: 70% !important;">
+        </div>
+        <div class="card-footer">
+            <div class="row">
+                <div class="col-sm-4 border-right">
+                    <div class="description-block">
+                        <h5 class="description-header">Siret</h5>
+                        <span class="description-text">{{ agence.siret }}</span>
+                    </div>
+                    <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 border-right">
+                    <div class="description-block">
+                        <h5 class="description-header">Email</h5>
+                        <span class="description-text">{{ agence.email }}</span>
+                    </div>
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4">
+                    <div class="description-block">
+                        <h5 class="description-header">Horaires</h5>
+                        <span class="description-text">{{ agence.horaireOuverture }}</span>
+                    </div>
+                    <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="description-block">
+                        <h5 class="description-header">Zone chalandises</h5>
+                        <ul>
+                            {% for dep in agence.departementid %}
+                                {{ dep.nom }}
+                            {% endfor %}
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

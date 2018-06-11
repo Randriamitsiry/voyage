@@ -22,7 +22,7 @@ class AgenceType extends AbstractType
             ->add('email', EmailType::class)
             ->add('horaireOuverture')
             ->add('photo', FileType::class, ['data_class'=>null])
-            ->add('departementid');
+            ->add('departementid', null, ['label'=>"Zones chalandise"]);
     }/**
      * {@inheritdoc}
      */
