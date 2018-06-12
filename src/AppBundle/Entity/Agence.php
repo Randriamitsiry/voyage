@@ -2,11 +2,12 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * Agence
+ * Agence.
  *
  * @ORM\Table(name="Agence", uniqueConstraints={@ORM\UniqueConstraint(name="telephone", columns={"telephone"}), @ORM\UniqueConstraint(name="email", columns={"email"})})
  * @ORM\Entity
@@ -15,7 +16,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class Agence
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
@@ -45,7 +46,7 @@ class Agence
     private $telephone;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="siret", type="integer", nullable=false)
      */
@@ -80,18 +81,24 @@ class Agence
     private $departementid;
 
     /**
-     * Constructor
+     * @var \Doctrine\Common\Collections\Collection
+     * @ORM\OneToMany(targetEntity="Agent", mappedBy="agenceid")
+     */
+    private $agents;
+
+    /**
+     * Constructor.
      */
     public function __construct()
     {
-        $this->departementid = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->departementid = new ArrayCollection();
+        $this->agents = new ArrayCollection();
     }
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -99,7 +106,7 @@ class Agence
     }
 
     /**
-     * Set nom
+     * Set nom.
      *
      * @param string $nom
      *
@@ -113,7 +120,7 @@ class Agence
     }
 
     /**
-     * Get nom
+     * Get nom.
      *
      * @return string
      */
@@ -123,7 +130,7 @@ class Agence
     }
 
     /**
-     * Set adresse
+     * Set adresse.
      *
      * @param string $adresse
      *
@@ -137,7 +144,7 @@ class Agence
     }
 
     /**
-     * Get adresse
+     * Get adresse.
      *
      * @return string
      */
@@ -147,7 +154,7 @@ class Agence
     }
 
     /**
-     * Set telephone
+     * Set telephone.
      *
      * @param string $telephone
      *
@@ -161,7 +168,7 @@ class Agence
     }
 
     /**
-     * Get telephone
+     * Get telephone.
      *
      * @return string
      */
@@ -171,9 +178,9 @@ class Agence
     }
 
     /**
-     * Set siret
+     * Set siret.
      *
-     * @param integer $siret
+     * @param int $siret
      *
      * @return Agence
      */
@@ -185,9 +192,9 @@ class Agence
     }
 
     /**
-     * Get siret
+     * Get siret.
      *
-     * @return integer
+     * @return int
      */
     public function getSiret()
     {
@@ -195,7 +202,7 @@ class Agence
     }
 
     /**
-     * Set email
+     * Set email.
      *
      * @param string $email
      *
@@ -209,7 +216,7 @@ class Agence
     }
 
     /**
-     * Get email
+     * Get email.
      *
      * @return string
      */
@@ -219,7 +226,7 @@ class Agence
     }
 
     /**
-     * Set horaireOuverture
+     * Set horaireOuverture.
      *
      * @param string $horaireOuverture
      *
@@ -233,7 +240,7 @@ class Agence
     }
 
     /**
-     * Get horaireOuverture
+     * Get horaireOuverture.
      *
      * @return string
      */
@@ -243,7 +250,7 @@ class Agence
     }
 
     /**
-     * Set photo
+     * Set photo.
      *
      * @param string $photo
      *
@@ -257,7 +264,7 @@ class Agence
     }
 
     /**
-     * Get photo
+     * Get photo.
      *
      * @return string
      */
@@ -267,7 +274,7 @@ class Agence
     }
 
     /**
-     * Add departementid
+     * Add departementid.
      *
      * @param \AppBundle\Entity\Departement $departementid
      *
@@ -277,11 +284,12 @@ class Agence
     {
         $this->departementid[] = $departementid;
         $departementid->addAgenceid($this);
+
         return $this;
     }
 
     /**
-     * Remove departementid
+     * Remove departementid.
      *
      * @param \AppBundle\Entity\Departement $departementid
      */
@@ -291,7 +299,7 @@ class Agence
     }
 
     /**
-     * Get departementid
+     * Get departementid.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -309,11 +317,45 @@ class Agence
         if ($this->getPhoto() instanceof UploadedFile) {
             $fileName = md5(uniqid()).'.'.$this->getPhoto()->guessExtension();
             try {
-                $this->photo->move("../web/images/agence", $fileName);
+                $this->photo->move('../web/images/agence', $fileName);
             } catch (\Exception $exception) {
                 throw $exception;
             }
             $this->setPhoto($fileName);
         }
+    }
+
+    /**
+     * Add agent.
+     *
+     * @param \AppBundle\Entity\Agent $agent
+     *
+     * @return Agence
+     */
+    public function addAgent(\AppBundle\Entity\Agent $agent)
+    {
+        $this->agents[] = $agent;
+
+        return $this;
+    }
+
+    /**
+     * Remove agent.
+     *
+     * @param \AppBundle\Entity\Agent $agent
+     */
+    public function removeAgent(\AppBundle\Entity\Agent $agent)
+    {
+        $this->agents->removeElement($agent);
+    }
+
+    /**
+     * Get agents.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAgents()
+    {
+        return $this->agents;
     }
 }

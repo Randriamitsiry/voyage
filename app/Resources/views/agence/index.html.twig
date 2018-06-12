@@ -24,7 +24,7 @@
                             <th>Nom</th>
                             <th>Adresse</th>
                             <th>Horaire d'ouverture</th>
-                            <th>Agent(s)</th>
+                            <th>Agents</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -36,7 +36,7 @@
                                 <td>{{ agence.horaireOuverture }}</td>
                                 <td>
                                     <a href="{{ path('agent_index', {'agence':agence.id}) }}">
-                                        agent(s)
+                                        agents({{ agence.agents | length }})
                                     </a>
                                 </td>
                                 <td>

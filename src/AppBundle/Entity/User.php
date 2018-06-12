@@ -3,17 +3,19 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * User
+ * User.
  *
  * @ORM\Table(name="User", uniqueConstraints={@ORM\UniqueConstraint(name="email", columns={"email"})}, indexes={@ORM\Index(name="FKUser347743", columns={"Roleid"})})
  * @ORM\Entity
  */
-class User
+class User implements UserInterface
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
@@ -36,12 +38,22 @@ class User
     private $motDePasse;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\Length(max=4096)
+     */
+    private $plainPassword;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=false)
      */
     private $email;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Agent", inversedBy="userid")
+     */
+    private $agent;
     /**
      * @var \Role
      *
@@ -52,12 +64,10 @@ class User
      */
     private $roleid;
 
-
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -65,7 +75,44 @@ class User
     }
 
     /**
-     * Set nomUtilisateur
+     * @return mixed
+     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param mixed $plainPassword
+     * @return User
+     */
+    public function setPlainPassword($plainPassword)
+    {
+        $this->plainPassword = $plainPassword;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAgent()
+    {
+        return $this->agent;
+    }
+
+    /**
+     * @param mixed $agent
+     * @return User
+     */
+    public function setAgent($agent)
+    {
+        $this->agent = $agent;
+        return $this;
+    }
+
+
+    /**
+     * Set nomUtilisateur.
      *
      * @param string $nomUtilisateur
      *
@@ -79,7 +126,7 @@ class User
     }
 
     /**
-     * Get nomUtilisateur
+     * Get nomUtilisateur.
      *
      * @return string
      */
@@ -89,7 +136,7 @@ class User
     }
 
     /**
-     * Set motDePasse
+     * Set motDePasse.
      *
      * @param string $motDePasse
      *
@@ -103,7 +150,7 @@ class User
     }
 
     /**
-     * Get motDePasse
+     * Get motDePasse.
      *
      * @return string
      */
@@ -113,7 +160,7 @@ class User
     }
 
     /**
-     * Set email
+     * Set email.
      *
      * @param string $email
      *
@@ -127,7 +174,7 @@ class User
     }
 
     /**
-     * Get email
+     * Get email.
      *
      * @return string
      */
@@ -137,7 +184,7 @@ class User
     }
 
     /**
-     * Set roleid
+     * Set roleid.
      *
      * @param \AppBundle\Entity\Role $roleid
      *
@@ -151,12 +198,79 @@ class User
     }
 
     /**
-     * Get roleid
+     * Get roleid.
      *
      * @return \AppBundle\Entity\Role
      */
     public function getRoleid()
     {
         return $this->roleid;
+    }
+
+    /**
+     * Returns the roles granted to the user.
+     *
+     * <code>
+     * public function getRoles()
+     * {
+     *     return array('ROLE_USER');
+     * }
+     * </code>
+     *
+     * Alternatively, the roles might be stored on a ``roles`` property,
+     * and populated in any number of different ways when the user object
+     * is created.
+     *
+     * @return (Role|string)[] The user roles
+     */
+    public function getRoles()
+    {
+        return [$this->roleid->getDesignation()];
+    }
+
+    /**
+     * Returns the password used to authenticate the user.
+     *
+     * This should be the encoded password. On authentication, a plain-text
+     * password will be salted, encoded, and then compared to this value.
+     *
+     * @return string The password
+     */
+    public function getPassword()
+    {
+        return $this->motDePasse;
+    }
+
+    /**
+     * Returns the salt that was originally used to encode the password.
+     *
+     * This can return null if the password was not encoded using a salt.
+     *
+     * @return string|null The salt
+     */
+    public function getSalt()
+    {
+        return null;
+    }
+
+    /**
+     * Returns the username used to authenticate the user.
+     *
+     * @return string The username
+     */
+    public function getUsername()
+    {
+        return $this->nomUtilisateur;
+    }
+
+    /**
+     * Removes sensitive data from the user.
+     *
+     * This is important if, at any given point, sensitive information like
+     * the plain-text password is stored on this object.
+     */
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
     }
 }

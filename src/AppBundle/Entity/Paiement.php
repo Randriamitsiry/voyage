@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Paiement
+ * Paiement.
  *
  * @ORM\Table(name="Paiement", uniqueConstraints={@ORM\UniqueConstraint(name="code", columns={"code"}), @ORM\UniqueConstraint(name="num_compte", columns={"num_compte"})})
  * @ORM\Entity
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Paiement
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
@@ -49,12 +49,10 @@ class Paiement
      */
     private $numCompte;
 
-
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -62,7 +60,7 @@ class Paiement
     }
 
     /**
-     * Set code
+     * Set code.
      *
      * @param string $code
      *
@@ -76,7 +74,7 @@ class Paiement
     }
 
     /**
-     * Get code
+     * Get code.
      *
      * @return string
      */
@@ -86,7 +84,7 @@ class Paiement
     }
 
     /**
-     * Set libelle
+     * Set libelle.
      *
      * @param string $libelle
      *
@@ -100,7 +98,7 @@ class Paiement
     }
 
     /**
-     * Get libelle
+     * Get libelle.
      *
      * @return string
      */
@@ -110,7 +108,7 @@ class Paiement
     }
 
     /**
-     * Set journal
+     * Set journal.
      *
      * @param string $journal
      *
@@ -124,7 +122,7 @@ class Paiement
     }
 
     /**
-     * Get journal
+     * Get journal.
      *
      * @return string
      */
@@ -134,7 +132,7 @@ class Paiement
     }
 
     /**
-     * Set numCompte
+     * Set numCompte.
      *
      * @param string $numCompte
      *
@@ -148,7 +146,7 @@ class Paiement
     }
 
     /**
-     * Get numCompte
+     * Get numCompte.
      *
      * @return string
      */

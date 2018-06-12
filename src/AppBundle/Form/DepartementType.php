@@ -14,13 +14,15 @@ class DepartementType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('libelle')->add('code')->add('agenceid');
-    }/**
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Departement'
+            'data_class' => 'AppBundle\Entity\Departement',
         ));
     }
 
@@ -31,6 +33,4 @@ class DepartementType extends AbstractType
     {
         return 'appbundle_departement';
     }
-
-
 }

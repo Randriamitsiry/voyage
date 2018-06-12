@@ -4,13 +4,11 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Agence;
 use AppBundle\Form\AgenceType;
-use AppBundle\Form\AgentType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Agence controller.
@@ -30,11 +28,11 @@ class AgenceController extends Controller
         $em = $this->getDoctrine()->getManager();
         $agences = $em->getRepository(Agence::class)->findAll();
         $agence = new Agence();
-        $form = $this->createForm(AgenceType::class, $agence, ['action'=>$this->generateUrl("agence_new")]);
+        $form = $this->createForm(AgenceType::class, $agence, ['action' => $this->generateUrl('agence_new')]);
 
         return $this->render('agence/index.html.twig', array(
             'agences' => $agences,
-            'form_new'=>$form->createView()
+            'form_new' => $form->createView(),
         ));
     }
 
@@ -48,8 +46,8 @@ class AgenceController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $agence = new Agence();
-        $form = $this->createForm(AgenceType::class, $agence, ['action'=>$this->generateUrl("agence_new")]);
-        $form->add("Enregistrer", SubmitType::class);
+        $form = $this->createForm(AgenceType::class, $agence, ['action' => $this->generateUrl('agence_new')]);
+        $form->add('Enregistrer', SubmitType::class);
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             foreach ($agence->getDepartementid() as $dep) {
@@ -59,10 +57,10 @@ class AgenceController extends Controller
             $em->persist($dep);
             $em->flush();
 
-            return $this->redirectToRoute("agence_index");
+            return $this->redirectToRoute('agence_index');
         }
 
-        return $this->render("agence/new.html.twig", ['form'=>$form->createView()]);
+        return $this->render('agence/new.html.twig', ['form' => $form->createView()]);
     }
 
     /**
@@ -92,7 +90,7 @@ class AgenceController extends Controller
         $em = $this->getDoctrine()->getManager();
         $agence = $em->getRepository(Agence::class)->find($id);
         $deleteForm = $this->createDeleteForm($agence);
-        $editForm = $this->createForm(AgenceType::class, $agence, ['action'=>$this->generateUrl("agence_edit", ['id'=>$agence->getId()])]);
+        $editForm = $this->createForm(AgenceType::class, $agence, ['action' => $this->generateUrl('agence_edit', ['id' => $agence->getId()])]);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -110,6 +108,7 @@ class AgenceController extends Controller
 
     /**
      * Deletes a agence entity.
+     *
      * @Route("/delete/{id}", name="agence_delete")
      */
     public function deleteAction($id)

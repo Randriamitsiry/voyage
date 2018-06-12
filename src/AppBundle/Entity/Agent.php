@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * Agent
+ * Agent.
  *
  * @ORM\Table(name="Agent", uniqueConstraints={@ORM\UniqueConstraint(name="email", columns={"email"}), @ORM\UniqueConstraint(name="tel_directe", columns={"tel_directe"})}, indexes={@ORM\Index(name="FKAgent329510", columns={"Agenceid"}), @ORM\Index(name="FKAgent317157", columns={"Userid"})})
  * @ORM\Entity
@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class Agent
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
@@ -73,14 +73,14 @@ class Agent
     private $photo;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="Visible_internet", type="boolean", nullable=false)
      */
     private $visibleInternet;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="Objectif", type="integer", nullable=false)
      */
@@ -89,7 +89,7 @@ class Agent
     /**
      * @var \User
      *
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\OneToOne(targetEntity="User", mappedBy="agent")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="Userid", referencedColumnName="id")
      * })
@@ -99,7 +99,7 @@ class Agent
     /**
      * @var \Agence
      *
-     * @ORM\ManyToOne(targetEntity="Agence")
+     * @ORM\ManyToOne(targetEntity="Agence", inversedBy="agents")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="Agenceid", referencedColumnName="id")
      * })
@@ -111,11 +111,26 @@ class Agent
      */
     private $espacepersonnalise;
 
+    /**
+     * @return mixed
+     */
+    public function getEspacepersonnalise()
+    {
+        return $this->espacepersonnalise;
+    }
 
     /**
-     * Get id
+     * @param mixed $espacepersonnalise
+     */
+    public function setEspacepersonnalise($espacepersonnalise)
+    {
+        $this->espacepersonnalise = $espacepersonnalise;
+    }
+
+    /**
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -123,7 +138,7 @@ class Agent
     }
 
     /**
-     * Set prenom
+     * Set prenom.
      *
      * @param string $prenom
      *
@@ -137,7 +152,7 @@ class Agent
     }
 
     /**
-     * Get prenom
+     * Get prenom.
      *
      * @return string
      */
@@ -147,7 +162,7 @@ class Agent
     }
 
     /**
-     * Set nom
+     * Set nom.
      *
      * @param string $nom
      *
@@ -161,7 +176,7 @@ class Agent
     }
 
     /**
-     * Get nom
+     * Get nom.
      *
      * @return string
      */
@@ -171,7 +186,7 @@ class Agent
     }
 
     /**
-     * Set email
+     * Set email.
      *
      * @param string $email
      *
@@ -185,7 +200,7 @@ class Agent
     }
 
     /**
-     * Get email
+     * Get email.
      *
      * @return string
      */
@@ -195,7 +210,7 @@ class Agent
     }
 
     /**
-     * Set initiales
+     * Set initiales.
      *
      * @param string $initiales
      *
@@ -209,7 +224,7 @@ class Agent
     }
 
     /**
-     * Get initiales
+     * Get initiales.
      *
      * @return string
      */
@@ -219,7 +234,7 @@ class Agent
     }
 
     /**
-     * Set telDirecte
+     * Set telDirecte.
      *
      * @param string $telDirecte
      *
@@ -233,7 +248,7 @@ class Agent
     }
 
     /**
-     * Get telDirecte
+     * Get telDirecte.
      *
      * @return string
      */
@@ -243,7 +258,7 @@ class Agent
     }
 
     /**
-     * Set horaire
+     * Set horaire.
      *
      * @param string $horaire
      *
@@ -257,7 +272,7 @@ class Agent
     }
 
     /**
-     * Get horaire
+     * Get horaire.
      *
      * @return string
      */
@@ -267,7 +282,7 @@ class Agent
     }
 
     /**
-     * Set photo
+     * Set photo.
      *
      * @param string $photo
      *
@@ -281,7 +296,7 @@ class Agent
     }
 
     /**
-     * Get photo
+     * Get photo.
      *
      * @return string
      */
@@ -291,9 +306,9 @@ class Agent
     }
 
     /**
-     * Set visibleInternet
+     * Set visibleInternet.
      *
-     * @param boolean $visibleInternet
+     * @param bool $visibleInternet
      *
      * @return Agent
      */
@@ -305,9 +320,9 @@ class Agent
     }
 
     /**
-     * Get visibleInternet
+     * Get visibleInternet.
      *
-     * @return boolean
+     * @return bool
      */
     public function getVisibleInternet()
     {
@@ -315,9 +330,9 @@ class Agent
     }
 
     /**
-     * Set objectif
+     * Set objectif.
      *
-     * @param integer $objectif
+     * @param int $objectif
      *
      * @return Agent
      */
@@ -329,9 +344,9 @@ class Agent
     }
 
     /**
-     * Get objectif
+     * Get objectif.
      *
-     * @return integer
+     * @return int
      */
     public function getObjectif()
     {
@@ -339,7 +354,7 @@ class Agent
     }
 
     /**
-     * Set userid
+     * Set userid.
      *
      * @param \AppBundle\Entity\User $userid
      *
@@ -353,7 +368,7 @@ class Agent
     }
 
     /**
-     * Get userid
+     * Get userid.
      *
      * @return \AppBundle\Entity\User
      */
@@ -363,7 +378,7 @@ class Agent
     }
 
     /**
-     * Set agenceid
+     * Set agenceid.
      *
      * @param \AppBundle\Entity\Agence $agenceid
      *
@@ -377,7 +392,7 @@ class Agent
     }
 
     /**
-     * Get agenceid
+     * Get agenceid.
      *
      * @return \AppBundle\Entity\Agence
      */
@@ -395,7 +410,7 @@ class Agent
         if ($this->getPhoto() instanceof UploadedFile) {
             $fileName = md5(uniqid()).'.'.$this->getPhoto()->guessExtension();
             try {
-                $this->photo->move("../web/images/agent", $fileName);
+                $this->photo->move('../web/images/agent', $fileName);
             } catch (\Exception $exception) {
                 throw $exception;
             }
@@ -404,10 +419,10 @@ class Agent
     }
 
     /**
-     * convert Agent to string
+     * convert Agent to string.
      */
     public function __toString()
     {
-        return $this->getNom() . " ".$this->getPrenom();
+        return $this->getNom().' '.$this->getPrenom();
     }
 }

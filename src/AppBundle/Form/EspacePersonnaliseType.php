@@ -20,20 +20,22 @@ class EspacePersonnaliseType extends AbstractType
             ->add('destinationContenu', TextareaType::class)
             ->add('formationTitre')
             ->add('formationContenu', TextareaType::class)
-            ->add('cursusFr', TextareaType::class, ['label'=>"Cursus en version française"])
-            ->add('cursusEn', TextareaType::class, ['label'=>"Cursus en version anglaise"])
-            ->add('cursusSolidaire', TextareaType::class, ['label'=>"Cursus solidaire"])
+            ->add('cursusFr', TextareaType::class, ['label' => 'Cursus en version française'])
+            ->add('cursusEn', TextareaType::class, ['label' => 'Cursus en version anglaise'])
+            ->add('cursusSolidaire', TextareaType::class, ['label' => 'Cursus solidaire'])
             ->add('signatureTel')
             ->add('signatureHoraireTravail')
             ->add('signatureVisuel')
-            ->add('phrase',null, ['label'=>"Phrase d'accroche"]);
-    }/**
+            ->add('phrase', null, ['label' => "Phrase d'accroche"]);
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\EspacePersonnalise'
+            'data_class' => 'AppBundle\Entity\EspacePersonnalise',
         ));
     }
 
@@ -44,6 +46,4 @@ class EspacePersonnaliseType extends AbstractType
     {
         return 'appbundle_espacepersonnalise';
     }
-
-
 }

@@ -4,7 +4,6 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Agent;
 use AppBundle\Entity\EspacePersonnalise;
-use AppBundle\Form\AgentType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -28,10 +27,10 @@ class AgentController extends Controller
     public function indexAction($agence = null)
     {
         $em = $this->getDoctrine()->getManager();
-        if ($agence == null) {
+        if (null == $agence) {
             $agents = $em->getRepository(Agent::class)->findAll();
         } else {
-            $agents = $em->getRepository(Agent::class)->findBy(['agenceid'=>$agence]);
+            $agents = $em->getRepository(Agent::class)->findBy(['agenceid' => $agence]);
         }
 
         return $this->render('agent/index.html.twig', array(
@@ -48,8 +47,8 @@ class AgentController extends Controller
     public function newAction(Request $request)
     {
         $agent = new Agent();
-        $form = $this->createForm('AppBundle\Form\AgentType', $agent, ['action'=>$this->generateUrl("agent_new")]);
-        $form->add("Enregistrer", SubmitType::class);
+        $form = $this->createForm('AppBundle\Form\AgentType', $agent, ['action' => $this->generateUrl('agent_new')]);
+        $form->add('Enregistrer', SubmitType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -94,11 +93,12 @@ class AgentController extends Controller
     public function editAction(Request $request, Agent $agent)
     {
         $deleteForm = $this->createDeleteForm($agent);
-        $editForm = $this->createForm('AppBundle\Form\AgentType', $agent, ['action'=>$this->generateUrl('agent_edit', ['id'=>$agent->getId()])]);
+        $editForm = $this->createForm('AppBundle\Form\AgentType', $agent, ['action' => $this->generateUrl('agent_edit', ['id' => $agent->getId()])]);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+
             return $this->redirectToRoute('agent_index');
         }
 
@@ -123,7 +123,6 @@ class AgentController extends Controller
 
             return $this->redirectToRoute('agent_index');
         } catch (\Exception $exception) {
-
             return new Response("Impossible de supprimer l'enregistrement : ".$exception->getMessage());
         }
     }

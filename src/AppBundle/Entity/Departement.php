@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Departement
+ * Departement.
  *
  * @ORM\Table(name="Departement", uniqueConstraints={@ORM\UniqueConstraint(name="code", columns={"code"})})
  * @ORM\Entity
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Departement
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
@@ -51,18 +51,17 @@ class Departement
     private $agenceid;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
         $this->agenceid = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -70,7 +69,7 @@ class Departement
     }
 
     /**
-     * Set libelle
+     * Set libelle.
      *
      * @param string $libelle
      *
@@ -84,7 +83,7 @@ class Departement
     }
 
     /**
-     * Get libelle
+     * Get libelle.
      *
      * @return string
      */
@@ -94,7 +93,7 @@ class Departement
     }
 
     /**
-     * Set code
+     * Set code.
      *
      * @param string $code
      *
@@ -108,7 +107,7 @@ class Departement
     }
 
     /**
-     * Get code
+     * Get code.
      *
      * @return string
      */
@@ -118,7 +117,7 @@ class Departement
     }
 
     /**
-     * Add agenceid
+     * Add agenceid.
      *
      * @param \AppBundle\Entity\Agence $agenceid
      *
@@ -132,7 +131,7 @@ class Departement
     }
 
     /**
-     * Remove agenceid
+     * Remove agenceid.
      *
      * @param \AppBundle\Entity\Agence $agenceid
      */
@@ -142,7 +141,7 @@ class Departement
     }
 
     /**
-     * Get agenceid
+     * Get agenceid.
      *
      * @return \Doctrine\Common\Collections\Collection
      */

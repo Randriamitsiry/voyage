@@ -14,13 +14,15 @@ class PaiementType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('code')->add('libelle')->add('journal')->add('numCompte');
-    }/**
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Paiement'
+            'data_class' => 'AppBundle\Entity\Paiement',
         ));
     }
 
@@ -31,6 +33,4 @@ class PaiementType extends AbstractType
     {
         return 'appbundle_paiement';
     }
-
-
 }

@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * EspacePersonnalise
+ * EspacePersonnalise.
  *
  * @ORM\Table(name="Espace_personnalise")
  * @ORM\Entity
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class EspacePersonnalise
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
@@ -121,13 +121,12 @@ class EspacePersonnalise
 
     public function __construct()
     {
-
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -135,7 +134,7 @@ class EspacePersonnalise
     }
 
     /**
-     * Set passionTitre
+     * Set passionTitre.
      *
      * @param string $passionTitre
      *
@@ -149,7 +148,7 @@ class EspacePersonnalise
     }
 
     /**
-     * Get passionTitre
+     * Get passionTitre.
      *
      * @return string
      */
@@ -159,7 +158,7 @@ class EspacePersonnalise
     }
 
     /**
-     * Set passionContenu
+     * Set passionContenu.
      *
      * @param string $passionContenu
      *
@@ -173,7 +172,7 @@ class EspacePersonnalise
     }
 
     /**
-     * Get passionContenu
+     * Get passionContenu.
      *
      * @return string
      */
@@ -183,7 +182,7 @@ class EspacePersonnalise
     }
 
     /**
-     * Set destinationTitre
+     * Set destinationTitre.
      *
      * @param string $destinationTitre
      *
@@ -197,7 +196,7 @@ class EspacePersonnalise
     }
 
     /**
-     * Get destinationTitre
+     * Get destinationTitre.
      *
      * @return string
      */
@@ -207,7 +206,7 @@ class EspacePersonnalise
     }
 
     /**
-     * Set destinationContenu
+     * Set destinationContenu.
      *
      * @param string $destinationContenu
      *
@@ -221,7 +220,7 @@ class EspacePersonnalise
     }
 
     /**
-     * Get destinationContenu
+     * Get destinationContenu.
      *
      * @return string
      */
@@ -231,7 +230,7 @@ class EspacePersonnalise
     }
 
     /**
-     * Set formationTitre
+     * Set formationTitre.
      *
      * @param string $formationTitre
      *
@@ -245,7 +244,7 @@ class EspacePersonnalise
     }
 
     /**
-     * Get formationTitre
+     * Get formationTitre.
      *
      * @return string
      */
@@ -255,7 +254,7 @@ class EspacePersonnalise
     }
 
     /**
-     * Set formationContenu
+     * Set formationContenu.
      *
      * @param string $formationContenu
      *
@@ -269,7 +268,7 @@ class EspacePersonnalise
     }
 
     /**
-     * Get formationContenu
+     * Get formationContenu.
      *
      * @return string
      */
@@ -279,7 +278,7 @@ class EspacePersonnalise
     }
 
     /**
-     * Set cursusFr
+     * Set cursusFr.
      *
      * @param string $cursusFr
      *
@@ -293,7 +292,7 @@ class EspacePersonnalise
     }
 
     /**
-     * Get cursusFr
+     * Get cursusFr.
      *
      * @return string
      */
@@ -303,7 +302,7 @@ class EspacePersonnalise
     }
 
     /**
-     * Set cursusSolidaire
+     * Set cursusSolidaire.
      *
      * @param string $cursusSolidaire
      *
@@ -317,7 +316,7 @@ class EspacePersonnalise
     }
 
     /**
-     * Get cursusSolidaire
+     * Get cursusSolidaire.
      *
      * @return string
      */
@@ -327,7 +326,7 @@ class EspacePersonnalise
     }
 
     /**
-     * Set cursusEn
+     * Set cursusEn.
      *
      * @param string $cursusEn
      *
@@ -341,7 +340,7 @@ class EspacePersonnalise
     }
 
     /**
-     * Get cursusEn
+     * Get cursusEn.
      *
      * @return string
      */
@@ -351,7 +350,7 @@ class EspacePersonnalise
     }
 
     /**
-     * Set signatureTel
+     * Set signatureTel.
      *
      * @param string $signatureTel
      *
@@ -365,7 +364,7 @@ class EspacePersonnalise
     }
 
     /**
-     * Get signatureTel
+     * Get signatureTel.
      *
      * @return string
      */
@@ -375,7 +374,7 @@ class EspacePersonnalise
     }
 
     /**
-     * Set signatureHoraireTravail
+     * Set signatureHoraireTravail.
      *
      * @param string $signatureHoraireTravail
      *
@@ -389,7 +388,7 @@ class EspacePersonnalise
     }
 
     /**
-     * Get signatureHoraireTravail
+     * Get signatureHoraireTravail.
      *
      * @return string
      */
@@ -399,7 +398,7 @@ class EspacePersonnalise
     }
 
     /**
-     * Set signatureVisuel
+     * Set signatureVisuel.
      *
      * @param binary $signatureVisuel
      *
@@ -413,7 +412,7 @@ class EspacePersonnalise
     }
 
     /**
-     * Get signatureVisuel
+     * Get signatureVisuel.
      *
      * @return binary
      */
@@ -423,7 +422,7 @@ class EspacePersonnalise
     }
 
     /**
-     * Set phrase
+     * Set phrase.
      *
      * @param string $phrase
      *
@@ -437,7 +436,7 @@ class EspacePersonnalise
     }
 
     /**
-     * Get phrase
+     * Get phrase.
      *
      * @return string
      */
@@ -447,7 +446,7 @@ class EspacePersonnalise
     }
 
     /**
-     * Set agentid
+     * Set agentid.
      *
      * @param \AppBundle\Entity\Agent $agentid
      *
@@ -461,7 +460,7 @@ class EspacePersonnalise
     }
 
     /**
-     * Get agentid
+     * Get agentid.
      *
      * @return \AppBundle\Entity\Agent
      */
@@ -472,6 +471,6 @@ class EspacePersonnalise
 
     public function __toString()
     {
-        return "EP-" .$this->getAgentid();
+        return 'EP-'.$this->getAgentid();
     }
 }

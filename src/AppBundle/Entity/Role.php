@@ -3,17 +3,17 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Security\Core\Role as Roles;
 /**
- * Role
+ * Role.
  *
  * @ORM\Table(name="Role")
  * @ORM\Entity
  */
-class Role
+class Role extends Roles\Role
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
@@ -21,19 +21,23 @@ class Role
      */
     private $id;
 
+    public function getRole()
+    {
+        return $this->designation;
+    }
+
+
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="designation", type="integer", nullable=false)
+     * @ORM\Column(name="designation", type="string", length=10)
      */
     private $designation;
 
-
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -41,9 +45,9 @@ class Role
     }
 
     /**
-     * Set designation
+     * Set designation.
      *
-     * @param integer $designation
+     * @param string $designation
      *
      * @return Role
      */
@@ -55,12 +59,21 @@ class Role
     }
 
     /**
-     * Get designation
+     * Get designation.
      *
-     * @return integer
+     * @return string
      */
     public function getDesignation()
     {
         return $this->designation;
+    }
+
+    /**
+     * @return string
+     * convert role to string
+     */
+    public function __toString()
+    {
+       return $this->designation;
     }
 }

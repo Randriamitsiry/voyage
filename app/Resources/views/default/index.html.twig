@@ -1,4 +1,8 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-   <h1 id="test">This i only a content test</h1>
+   <h1>Ici s'affichera le dashboard de l'administration</h1>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+   <script src="{{ asset('dist/js/pages/dashboard2.js') }}"></script>
 {% endblock %}
