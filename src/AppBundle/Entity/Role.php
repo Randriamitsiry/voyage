@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\Role as Roles;
+
 /**
  * Role.
  *
@@ -74,6 +75,6 @@ class Role extends Roles\Role
      */
     public function __toString()
     {
-       return $this->designation;
+        return $this->designation;
     }
 }

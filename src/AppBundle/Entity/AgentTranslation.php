@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * EspacePersonnalise.
+ * AgentTranslation.
  *
- * @ORM\Table(name="Espace_personnalise")
+ * @ORM\Table(name="Agent_translation")
  * @ORM\Entity
  */
-class EspacePersonnalise
+class AgentTranslation
 {
     /**
      * @var int
@@ -20,6 +20,12 @@ class EspacePersonnalise
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Locale")
+     */
+    private $locale;
+
 
     /**
      * @var string
@@ -68,7 +74,7 @@ class EspacePersonnalise
      *
      * @ORM\Column(name="cursus_fr", type="string", length=255, nullable=true)
      */
-    private $cursusFr;
+    private $cursus;
 
     /**
      * @var string
@@ -76,13 +82,6 @@ class EspacePersonnalise
      * @ORM\Column(name="cursus_solidaire", type="string", length=255, nullable=true)
      */
     private $cursusSolidaire;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="cursus_en", type="string", length=255, nullable=true)
-     */
-    private $cursusEn;
 
     /**
      * @var string
@@ -115,7 +114,7 @@ class EspacePersonnalise
     /**
      * @var \Agent
      *
-     * @ORM\OneToOne(targetEntity="Agent", inversedBy="espacepersonnalise")
+     * @ORM\ManyToOne(targetEntity="Agent", inversedBy="translations")
      */
     private $agentid;
 
@@ -138,7 +137,7 @@ class EspacePersonnalise
      *
      * @param string $passionTitre
      *
-     * @return EspacePersonnalise
+     * @return AgentTranslation
      */
     public function setPassionTitre($passionTitre)
     {
@@ -162,7 +161,7 @@ class EspacePersonnalise
      *
      * @param string $passionContenu
      *
-     * @return EspacePersonnalise
+     * @return AgentTranslation
      */
     public function setPassionContenu($passionContenu)
     {
@@ -186,7 +185,7 @@ class EspacePersonnalise
      *
      * @param string $destinationTitre
      *
-     * @return EspacePersonnalise
+     * @return AgentTranslation
      */
     public function setDestinationTitre($destinationTitre)
     {
@@ -210,7 +209,7 @@ class EspacePersonnalise
      *
      * @param string $destinationContenu
      *
-     * @return EspacePersonnalise
+     * @return AgentTranslation
      */
     public function setDestinationContenu($destinationContenu)
     {
@@ -234,7 +233,7 @@ class EspacePersonnalise
      *
      * @param string $formationTitre
      *
-     * @return EspacePersonnalise
+     * @return AgentTranslation
      */
     public function setFormationTitre($formationTitre)
     {
@@ -258,7 +257,7 @@ class EspacePersonnalise
      *
      * @param string $formationContenu
      *
-     * @return EspacePersonnalise
+     * @return AgentTranslation
      */
     public function setFormationContenu($formationContenu)
     {
@@ -280,13 +279,13 @@ class EspacePersonnalise
     /**
      * Set cursusFr.
      *
-     * @param string $cursusFr
+     * @param string $cursus
      *
-     * @return EspacePersonnalise
+     * @return AgentTranslation
      */
-    public function setCursusFr($cursusFr)
+    public function setCursus($cursus)
     {
-        $this->cursusFr = $cursusFr;
+        $this->cursus = $cursus;
 
         return $this;
     }
@@ -296,9 +295,9 @@ class EspacePersonnalise
      *
      * @return string
      */
-    public function getCursusFr()
+    public function getCursus()
     {
-        return $this->cursusFr;
+        return $this->cursus;
     }
 
     /**
@@ -306,7 +305,7 @@ class EspacePersonnalise
      *
      * @param string $cursusSolidaire
      *
-     * @return EspacePersonnalise
+     * @return AgentTranslation
      */
     public function setCursusSolidaire($cursusSolidaire)
     {
@@ -326,35 +325,11 @@ class EspacePersonnalise
     }
 
     /**
-     * Set cursusEn.
-     *
-     * @param string $cursusEn
-     *
-     * @return EspacePersonnalise
-     */
-    public function setCursusEn($cursusEn)
-    {
-        $this->cursusEn = $cursusEn;
-
-        return $this;
-    }
-
-    /**
-     * Get cursusEn.
-     *
-     * @return string
-     */
-    public function getCursusEn()
-    {
-        return $this->cursusEn;
-    }
-
-    /**
      * Set signatureTel.
      *
      * @param string $signatureTel
      *
-     * @return EspacePersonnalise
+     * @return AgentTranslation
      */
     public function setSignatureTel($signatureTel)
     {
@@ -378,7 +353,7 @@ class EspacePersonnalise
      *
      * @param string $signatureHoraireTravail
      *
-     * @return EspacePersonnalise
+     * @return AgentTranslation
      */
     public function setSignatureHoraireTravail($signatureHoraireTravail)
     {
@@ -402,7 +377,7 @@ class EspacePersonnalise
      *
      * @param binary $signatureVisuel
      *
-     * @return EspacePersonnalise
+     * @return AgentTranslation
      */
     public function setSignatureVisuel($signatureVisuel)
     {
@@ -426,7 +401,7 @@ class EspacePersonnalise
      *
      * @param string $phrase
      *
-     * @return EspacePersonnalise
+     * @return AgentTranslation
      */
     public function setPhrase($phrase)
     {
@@ -450,7 +425,7 @@ class EspacePersonnalise
      *
      * @param \AppBundle\Entity\Agent $agentid
      *
-     * @return EspacePersonnalise
+     * @return AgentTranslation
      */
     public function setAgentid(\AppBundle\Entity\Agent $agentid = null)
     {
@@ -472,5 +447,23 @@ class EspacePersonnalise
     public function __toString()
     {
         return 'EP-'.$this->getAgentid();
+    }
+
+    /**
+     * @return Locale
+     */
+    public function getLocale()
+    {
+        return $this->locale;
+    }
+
+    /**
+     * @param Locale $locale
+     * @return AgentTranslation
+     */
+    public function setLocale($locale)
+    {
+        $this->locale = $locale;
+        return $this;
     }
 }

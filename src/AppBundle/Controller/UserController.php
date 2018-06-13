@@ -7,6 +7,7 @@
  */
 
 namespace AppBundle\Controller;
+
 use AppBundle\Entity\User;
 use AppBundle\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -48,8 +49,8 @@ class UserController extends Controller
         return $this->render("user/register.html.twig", ['form'=>$form->createView()]);
     }
 
-    public function loginAction() {
-
+    public function loginAction()
+    {
         $authenticationUtils = $this->get('security.authentication_utils');
 
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -57,7 +58,9 @@ class UserController extends Controller
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render("security/login.html.twig", array(
+        return $this->render(
+            "security/login.html.twig",
+            array(
             'last_username' => $lastUsername,
             'error'         => $error
             )
@@ -66,7 +69,6 @@ class UserController extends Controller
 
     public function loginCheckAction()
     {
-
     }
 
     public function logoutAction()

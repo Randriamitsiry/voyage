@@ -107,25 +107,9 @@ class Agent
     private $agenceid;
 
     /**
-     * @ORM\OneToOne(targetEntity="EspacePersonnalise", mappedBy="agentid")
+     * @ORM\OneToMany(targetEntity="AgentTranslation", mappedBy="agentid")
      */
-    private $espacepersonnalise;
-
-    /**
-     * @return mixed
-     */
-    public function getEspacepersonnalise()
-    {
-        return $this->espacepersonnalise;
-    }
-
-    /**
-     * @param mixed $espacepersonnalise
-     */
-    public function setEspacepersonnalise($espacepersonnalise)
-    {
-        $this->espacepersonnalise = $espacepersonnalise;
-    }
+    private $translations;
 
     /**
      * Get id.

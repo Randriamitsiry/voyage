@@ -3,7 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Agent;
-use AppBundle\Entity\EspacePersonnalise;
+use AppBundle\Entity\AgentTranslation;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -53,7 +53,7 @@ class AgentController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $esp = new EspacePersonnalise();
+            $esp = new AgentTranslation();
             $esp->setAgentid($agent);
             $em->persist($esp);
             $em->persist($agent);
