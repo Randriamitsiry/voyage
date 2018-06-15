@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace AppBundle\Entity\Translation;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -22,7 +22,7 @@ class AgentTranslation
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Locale")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Locale")
      */
     private $locale;
 
@@ -83,26 +83,6 @@ class AgentTranslation
      */
     private $cursusSolidaire;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="signature_tel", type="string", length=20, nullable=true)
-     */
-    private $signatureTel;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="signature_horaire_travail", type="string", length=255, nullable=true)
-     */
-    private $signatureHoraireTravail;
-
-    /**
-     * @var binary
-     *
-     * @ORM\Column(name="signature_visuel", type="binary", nullable=true)
-     */
-    private $signatureVisuel;
 
     /**
      * @var string
@@ -114,9 +94,16 @@ class AgentTranslation
     /**
      * @var \Agent
      *
-     * @ORM\ManyToOne(targetEntity="Agent", inversedBy="translations")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Agent", inversedBy="translations")
      */
     private $agentid;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="signature_horaire_travail", type="string", length=255, nullable=true)
+     */
+    private $signatureHoraireTravail;
 
     public function __construct()
     {
@@ -370,30 +357,6 @@ class AgentTranslation
     public function getSignatureHoraireTravail()
     {
         return $this->signatureHoraireTravail;
-    }
-
-    /**
-     * Set signatureVisuel.
-     *
-     * @param binary $signatureVisuel
-     *
-     * @return AgentTranslation
-     */
-    public function setSignatureVisuel($signatureVisuel)
-    {
-        $this->signatureVisuel = $signatureVisuel;
-
-        return $this;
-    }
-
-    /**
-     * Get signatureVisuel.
-     *
-     * @return binary
-     */
-    public function getSignatureVisuel()
-    {
-        return $this->signatureVisuel;
     }
 
     /**

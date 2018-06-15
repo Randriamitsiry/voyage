@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\Translation\AgentTranslation;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
@@ -26,16 +27,16 @@ class Agent
     /**
      * @var string
      *
-     * @ORM\Column(name="prenom", type="string", length=100, nullable=false)
+     * @ORM\Column(name="nom", type="string", length=100, nullable=false)
      */
-    private $prenom;
+    private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=100, nullable=false)
+     * @ORM\Column(name="prenom", type="string", length=100, nullable=false)
      */
-    private $nom;
+    private $prenom;
 
     /**
      * @var string
@@ -66,6 +67,20 @@ class Agent
     private $horaire;
 
     /**
+     * @var binary
+     *
+     * @ORM\Column(name="signature_visuel", type="binary", nullable=true)
+     */
+    private $signatureVisuel;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="signature_tel", type="string", length=20, nullable=true)
+     */
+    private $signatureTel;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="photo", type="string", length=255, nullable=true)
@@ -79,12 +94,6 @@ class Agent
      */
     private $visibleInternet;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="Objectif", type="integer", nullable=false)
-     */
-    private $objectif;
 
     /**
      * @var \User
@@ -107,7 +116,7 @@ class Agent
     private $agenceid;
 
     /**
-     * @ORM\OneToMany(targetEntity="AgentTranslation", mappedBy="agentid")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Translation\AgentTranslation", mappedBy="agentid")
      */
     private $translations;
 
@@ -314,30 +323,6 @@ class Agent
     }
 
     /**
-     * Set objectif.
-     *
-     * @param int $objectif
-     *
-     * @return Agent
-     */
-    public function setObjectif($objectif)
-    {
-        $this->objectif = $objectif;
-
-        return $this;
-    }
-
-    /**
-     * Get objectif.
-     *
-     * @return int
-     */
-    public function getObjectif()
-    {
-        return $this->objectif;
-    }
-
-    /**
      * Set userid.
      *
      * @param \AppBundle\Entity\User $userid
@@ -408,5 +393,96 @@ class Agent
     public function __toString()
     {
         return $this->getNom().' '.$this->getPrenom();
+    }
+
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->translations = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set signatureVisuel
+     *
+     * @param binary $signatureVisuel
+     *
+     * @return Agent
+     */
+    public function setSignatureVisuel($signatureVisuel)
+    {
+        $this->signatureVisuel = $signatureVisuel;
+
+        return $this;
+    }
+
+    /**
+     * Get signatureVisuel
+     *
+     * @return binary
+     */
+    public function getSignatureVisuel()
+    {
+        return $this->signatureVisuel;
+    }
+
+    /**
+     * Set signatureTel
+     *
+     * @param string $signatureTel
+     *
+     * @return Agent
+     */
+    public function setSignatureTel($signatureTel)
+    {
+        $this->signatureTel = $signatureTel;
+
+        return $this;
+    }
+
+    /**
+     * Get signatureTel
+     *
+     * @return string
+     */
+    public function getSignatureTel()
+    {
+        return $this->signatureTel;
+    }
+
+    /**
+     * Add translation
+     *
+     * @param \AppBundle\Entity\Translation\AgentTranslation $translation
+     *
+     * @return Agent
+     */
+    public function addTranslation(\AppBundle\Entity\Translation\AgentTranslation $translation)
+    {
+        $this->translations[] = $translation;
+
+        return $this;
+    }
+
+    /**
+     * Remove translation
+     *
+     * @param \AppBundle\Entity\Translation\AgentTranslation $translation
+     */
+    public function removeTranslation(\AppBundle\Entity\Translation\AgentTranslation $translation)
+    {
+        $this->translations->removeElement($translation);
+    }
+
+    /**
+     * Get translations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTranslations()
+    {
+        return $this->translations;
     }
 }

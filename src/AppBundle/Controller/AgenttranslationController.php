@@ -9,14 +9,14 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Agent;
-use AppBundle\Entity\AgentTranslation;
+use AppBundle\Entity\Translation\AgentTranslation;
 use AppBundle\Form\AgentTranslationType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class AgentTranslationController extends Controller
+class AgenttranslationController extends Controller
 {
     private static $idAgent;
     /**
@@ -61,7 +61,7 @@ class AgentTranslationController extends Controller
             return $this->redirectToRoute("espace_personnalise", ['id'=>$id]);
         }
 
-        return $this->render("espace/new.html.twig", [
+        return $this->render("espace/form.html.twig", [
             'form'=>$form->createView(),
             'espace'=>$translation
         ]);
@@ -78,6 +78,32 @@ class AgentTranslationController extends Controller
         $em->remove($agentTranslation);
         $em->flush();
 
-        return $this->redirectToRoute('espace_personnalise', ['id'=>$this::$idAgent]);
+        return $this->redirectToRoute('espace_personnalise', ['id'=>$agentTranslation->getAgentid()->getId()]);
+    }
+
+    /**
+     * @param Request $request
+     * @param AgentTranslation $agentTranslation
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("espace/edit-{id}", name="espace_edit")
+     */
+    public function editAction(Request $request, AgentTranslation $agentTranslation)
+    {
+        $form = $this->createForm(AgentTranslationType::class, $agentTranslation, ['action'=>$this->generateUrl("espace_edit", ["id"=> $agentTranslation->getId()])]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+
+            return $this->redirectToRoute('espace_personnalise', ['id'=>$agentTranslation->getAgentid()->getId()]);
+        }
+
+        return $this->render("espace/form.html.twig",
+            [
+                'form'=>$form->createView(),
+                'espace'=>$agentTranslation
+            ]
+        );
     }
 }

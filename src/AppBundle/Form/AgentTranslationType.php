@@ -24,9 +24,7 @@ class AgentTranslationType extends AbstractType
             ->add('formationContenu')
             ->add('cursus')
             ->add('cursusSolidaire')
-            ->add('signatureTel')
             ->add('signatureHoraireTravail')
-            ->add('signatureVisuel')
             ->add('phrase');
     }/**
      * {@inheritdoc}
@@ -34,7 +32,7 @@ class AgentTranslationType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\AgentTranslation'
+            'data_class' => 'AppBundle\Entity\Translation\AgentTranslation'
         ));
     }
 

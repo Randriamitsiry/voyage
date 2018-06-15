@@ -4,8 +4,7 @@
     <div class="card card-widget widget-user">
         <!-- Add the bg color to the header using any of the bg-* classes -->
         <div class="widget-user-header bg-info-active">
-            <h3 class="widget-user-username">{{ agence.nom }}</h3>
-            <h5 class="widget-user-desc">{{ agence.adresse }}</h5>
+            <h3 class="widget-user-username">Agence[{{ agence.nom }}]</h3>
             <h6> tel : {{ agence.telephone }}</h6>
         </div>
         <div class="widget-user-image">
@@ -13,7 +12,7 @@
         </div>
         <div class="card-footer">
             <div class="row">
-                <div class="col-sm-4 border-right">
+                <div class="col-sm-6 border-right">
                     <div class="description-block">
                         <h5 class="description-header">Siret</h5>
                         <span class="description-text">{{ agence.siret }}</span>
@@ -21,21 +20,12 @@
                     <!-- /.description-block -->
                 </div>
                 <!-- /.col -->
-                <div class="col-sm-4 border-right">
+                <div class="col-sm-6 border-right">
                     <div class="description-block">
                         <h5 class="description-header">Email</h5>
                         <span class="description-text">{{ agence.email }}</span>
                     </div>
                 </div>
-                <!-- /.col -->
-                <div class="col-sm-4">
-                    <div class="description-block">
-                        <h5 class="description-header">Horaires</h5>
-                        <span class="description-text">{{ agence.horaireOuverture }}</span>
-                    </div>
-                    <!-- /.description-block -->
-                </div>
-                <!-- /.col -->
             </div>
             <!-- /.row -->
             <div class="row">

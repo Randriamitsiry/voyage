@@ -94,4 +94,13 @@ class Locale
     {
         return $this->libelle;
     }
+
+    /**
+     * @return string
+     * convert to string
+     */
+    public function __toString()
+    {
+        return $this->libelle;
+    }
 }

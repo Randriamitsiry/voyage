@@ -2,11 +2,12 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * Agence
+ * Agence.
  *
  * @ORM\Table(name="Agence", uniqueConstraints={@ORM\UniqueConstraint(name="telephone", columns={"telephone"}), @ORM\UniqueConstraint(name="email", columns={"email"})})
  * @ORM\Entity
@@ -15,7 +16,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class Agence
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
@@ -26,16 +27,9 @@ class Agence
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255, nullable=false)
+     * @ORM\Column(name="nom", type="string", length=100, nullable=false)
      */
     private $nom;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="adresse", type="string", length=255, nullable=false)
-     */
-    private $adresse;
 
     /**
      * @var string
@@ -45,7 +39,7 @@ class Agence
     private $telephone;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="siret", type="integer", nullable=false)
      */
@@ -61,21 +55,22 @@ class Agence
     /**
      * @var string
      *
-     * @ORM\Column(name="horaire_ouverture", type="string", length=255, nullable=false)
-     */
-    private $horaireOuverture;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="photo", type="string", length=255, nullable=false)
      */
     private $photo;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="adresse", type="string", length=255, nullable=false)
+     */
+    private $adresse;
+
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Departement", mappedBy="agenceid")
+     * @ORM\OneToMany(targetEntity="Departement", mappedBy="agenceid")
      */
     private $departementid;
 
@@ -86,18 +81,23 @@ class Agence
     private $agents;
 
     /**
-     * Constructor
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Translation\AgenceTranslation", mappedBy="agence")
+     */
+    private $translations;
+
+    /**
+     * Constructor.
      */
     public function __construct()
     {
-        $this->departementid = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->departementid = new ArrayCollection();
+        $this->agents = new ArrayCollection();
     }
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -105,55 +105,7 @@ class Agence
     }
 
     /**
-     * Set nom
-     *
-     * @param string $nom
-     *
-     * @return Agence
-     */
-    public function setNom($nom)
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    /**
-     * Get nom
-     *
-     * @return string
-     */
-    public function getNom()
-    {
-        return $this->nom;
-    }
-
-    /**
-     * Set adresse
-     *
-     * @param string $adresse
-     *
-     * @return Agence
-     */
-    public function setAdresse($adresse)
-    {
-        $this->adresse = $adresse;
-
-        return $this;
-    }
-
-    /**
-     * Get adresse
-     *
-     * @return string
-     */
-    public function getAdresse()
-    {
-        return $this->adresse;
-    }
-
-    /**
-     * Set telephone
+     * Set telephone.
      *
      * @param string $telephone
      *
@@ -167,7 +119,7 @@ class Agence
     }
 
     /**
-     * Get telephone
+     * Get telephone.
      *
      * @return string
      */
@@ -177,9 +129,9 @@ class Agence
     }
 
     /**
-     * Set siret
+     * Set siret.
      *
-     * @param integer $siret
+     * @param int $siret
      *
      * @return Agence
      */
@@ -191,9 +143,9 @@ class Agence
     }
 
     /**
-     * Get siret
+     * Get siret.
      *
-     * @return integer
+     * @return int
      */
     public function getSiret()
     {
@@ -201,7 +153,7 @@ class Agence
     }
 
     /**
-     * Set email
+     * Set email.
      *
      * @param string $email
      *
@@ -215,7 +167,7 @@ class Agence
     }
 
     /**
-     * Get email
+     * Get email.
      *
      * @return string
      */
@@ -225,31 +177,7 @@ class Agence
     }
 
     /**
-     * Set horaireOuverture
-     *
-     * @param string $horaireOuverture
-     *
-     * @return Agence
-     */
-    public function setHoraireOuverture($horaireOuverture)
-    {
-        $this->horaireOuverture = $horaireOuverture;
-
-        return $this;
-    }
-
-    /**
-     * Get horaireOuverture
-     *
-     * @return string
-     */
-    public function getHoraireOuverture()
-    {
-        return $this->horaireOuverture;
-    }
-
-    /**
-     * Set photo
+     * Set photo.
      *
      * @param string $photo
      *
@@ -263,7 +191,7 @@ class Agence
     }
 
     /**
-     * Get photo
+     * Get photo.
      *
      * @return string
      */
@@ -273,7 +201,7 @@ class Agence
     }
 
     /**
-     * Add departementid
+     * Add departementid.
      *
      * @param \AppBundle\Entity\Departement $departementid
      *
@@ -283,11 +211,12 @@ class Agence
     {
         $this->departementid[] = $departementid;
         $departementid->addAgenceid($this);
+
         return $this;
     }
 
     /**
-     * Remove departementid
+     * Remove departementid.
      *
      * @param \AppBundle\Entity\Departement $departementid
      */
@@ -297,7 +226,7 @@ class Agence
     }
 
     /**
-     * Get departementid
+     * Get departementid.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -315,7 +244,7 @@ class Agence
         if ($this->getPhoto() instanceof UploadedFile) {
             $fileName = md5(uniqid()).'.'.$this->getPhoto()->guessExtension();
             try {
-                $this->photo->move("../web/images/agence", $fileName);
+                $this->photo->move('../web/images/agence', $fileName);
             } catch (\Exception $exception) {
                 throw $exception;
             }
@@ -324,7 +253,7 @@ class Agence
     }
 
     /**
-     * Add agent
+     * Add agent.
      *
      * @param \AppBundle\Entity\Agent $agent
      *
@@ -338,7 +267,7 @@ class Agence
     }
 
     /**
-     * Remove agent
+     * Remove agent.
      *
      * @param \AppBundle\Entity\Agent $agent
      */
@@ -348,7 +277,7 @@ class Agence
     }
 
     /**
-     * Get agents
+     * Get agents.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -356,4 +285,75 @@ class Agence
     {
         return $this->agents;
     }
+
+    /**
+     * Add translation
+     *
+     * @param \AppBundle\Entity\Translation\AgenceTranslation $translation
+     *
+     * @return Agence
+     */
+    public function addTranslation(\AppBundle\Entity\Translation\AgenceTranslation $translation)
+    {
+        $this->translations[] = $translation;
+
+        return $this;
+    }
+
+    /**
+     * Remove translation
+     *
+     * @param \AppBundle\Entity\Translation\AgenceTranslation $translation
+     */
+    public function removeTranslation(\AppBundle\Entity\Translation\AgenceTranslation $translation)
+    {
+        $this->translations->removeElement($translation);
+    }
+
+    /**
+     * Get translations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTranslations()
+    {
+        return $this->translations;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAdresse()
+    {
+        return $this->adresse;
+    }
+
+    /**
+     * @param string $adresse
+     * @return Agence
+     */
+    public function setAdresse($adresse)
+    {
+        $this->adresse = $adresse;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * @param string $nom
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+        return $this;
+    }
+
+
 }

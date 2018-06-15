@@ -1,8 +1,8 @@
 {% extends "base.html.twig" %}
 {% block ariane %}
     <li class="breadcrumb-item"><a href="{{ path('homepage') }}">Accueil</a></li>
-    <li class="breadcrumb-item" href="{{ path('agent_index') }}">Agent</li>
-    <li class="breadcrumb-item active">Agent</li>
+    <li class="breadcrumb-item" ><a href="{{ path('agent_index') }}"> Agent</a></li>
+    <li class="breadcrumb-item active">Espace personnalisée</li>
 {% endblock %}
 {% block body %}
 <div class="row">
@@ -30,11 +30,12 @@
                     {% for espace in espaces %}
                         <tr>
                             <td>
-                                {{ espace.locale.libelle }}
+                                <a href="#" data-toggle="modal" data-target="#modal_show_{{ espace.id }}">
+                                    {{ espace.locale.libelle }}
+                                </a>
                             </td>
                             <td>
                                 <button data-toggle="modal" data-target="#modal_show_{{ espace.id }}" class="fa fa-eye"></button>
-                                <button data-toggle="modal" data-target="#modal_edit_{{ espace.id }}" class="fa fa-pencil"></button>
                                 <button type="button" data-toggle="modal" data-target="#modal_{{ espace.id }}"style="color: red !important;" class="fa fa-trash"></button>
 
                                 <div class="modal" tabindex="-1" role="dialog" id="modal_{{ espace.id }}">
@@ -57,9 +58,19 @@
                                     </div>
                                 </div>
                                 <div class="modal" tabindex="-1" role="dialog" id="modal_show_{{ espace.id }}">
-                                    <div class="modal-dialog" role="document">
+                                    <div class="modal-dialog modal-lg" role="document">
                                         <div class="modal-content">
-
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Espace peronnalisée agent {{ agent.nom }} en version {{ espace.locale.libelle }}</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                {{ render(controller(
+                                                    'AppBundle:Agenttranslation:edit', {'id': espace.id}
+                                                )) }}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

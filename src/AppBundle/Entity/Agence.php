@@ -27,16 +27,9 @@ class Agence
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255, nullable=false)
+     * @ORM\Column(name="nom", type="string", length=100, nullable=false)
      */
     private $nom;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="adresse", type="string", length=255, nullable=false)
-     */
-    private $adresse;
 
     /**
      * @var string
@@ -62,21 +55,22 @@ class Agence
     /**
      * @var string
      *
-     * @ORM\Column(name="horaire_ouverture", type="string", length=255, nullable=false)
-     */
-    private $horaireOuverture;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="photo", type="string", length=255, nullable=false)
      */
     private $photo;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="adresse", type="string", length=255, nullable=false)
+     */
+    private $adresse;
+
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Departement", mappedBy="agenceid")
+     * @ORM\OneToMany(targetEntity="Departement", mappedBy="agenceid")
      */
     private $departementid;
 
@@ -85,6 +79,11 @@ class Agence
      * @ORM\OneToMany(targetEntity="Agent", mappedBy="agenceid")
      */
     private $agents;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Translation\AgenceTranslation", mappedBy="agence")
+     */
+    private $translations;
 
     /**
      * Constructor.
@@ -103,54 +102,6 @@ class Agence
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set nom.
-     *
-     * @param string $nom
-     *
-     * @return Agence
-     */
-    public function setNom($nom)
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    /**
-     * Get nom.
-     *
-     * @return string
-     */
-    public function getNom()
-    {
-        return $this->nom;
-    }
-
-    /**
-     * Set adresse.
-     *
-     * @param string $adresse
-     *
-     * @return Agence
-     */
-    public function setAdresse($adresse)
-    {
-        $this->adresse = $adresse;
-
-        return $this;
-    }
-
-    /**
-     * Get adresse.
-     *
-     * @return string
-     */
-    public function getAdresse()
-    {
-        return $this->adresse;
     }
 
     /**
@@ -223,30 +174,6 @@ class Agence
     public function getEmail()
     {
         return $this->email;
-    }
-
-    /**
-     * Set horaireOuverture.
-     *
-     * @param string $horaireOuverture
-     *
-     * @return Agence
-     */
-    public function setHoraireOuverture($horaireOuverture)
-    {
-        $this->horaireOuverture = $horaireOuverture;
-
-        return $this;
-    }
-
-    /**
-     * Get horaireOuverture.
-     *
-     * @return string
-     */
-    public function getHoraireOuverture()
-    {
-        return $this->horaireOuverture;
     }
 
     /**
@@ -357,5 +284,79 @@ class Agence
     public function getAgents()
     {
         return $this->agents;
+    }
+
+    /**
+     * Add translation
+     *
+     * @param \AppBundle\Entity\Translation\AgenceTranslation $translation
+     *
+     * @return Agence
+     */
+    public function addTranslation(\AppBundle\Entity\Translation\AgenceTranslation $translation)
+    {
+        $this->translations[] = $translation;
+
+        return $this;
+    }
+
+    /**
+     * Remove translation
+     *
+     * @param \AppBundle\Entity\Translation\AgenceTranslation $translation
+     */
+    public function removeTranslation(\AppBundle\Entity\Translation\AgenceTranslation $translation)
+    {
+        $this->translations->removeElement($translation);
+    }
+
+    /**
+     * Get translations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTranslations()
+    {
+        return $this->translations;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAdresse()
+    {
+        return $this->adresse;
+    }
+
+    /**
+     * @param string $adresse
+     * @return Agence
+     */
+    public function setAdresse($adresse)
+    {
+        $this->adresse = $adresse;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * @param string $nom
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->email;
     }
 }

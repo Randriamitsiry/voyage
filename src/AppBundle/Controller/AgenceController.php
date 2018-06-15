@@ -3,6 +3,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Agence;
+use AppBundle\Entity\Locale;
+use AppBundle\Entity\Translation\AgenceTranslation;
 use AppBundle\Form\AgenceType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -50,11 +52,6 @@ class AgenceController extends Controller
         $form->add('Enregistrer', SubmitType::class);
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
-            foreach ($agence->getDepartementid() as $dep) {
-                $dep->addAgenceid($agence);
-            }
-            $em->persist($agence);
-            $em->persist($dep);
             $em->flush();
 
             return $this->redirectToRoute('agence_index');

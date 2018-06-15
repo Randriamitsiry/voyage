@@ -27,8 +27,7 @@ class AgentType extends AbstractType
             ->add('horaire')
             ->add('photo', FileType::class, ['data_class' => null])
             ->add('visibleInternet', CheckboxType::class, ['label' => 'Visible sur internet?', 'required' => false])
-            ->add('objectif')
-            ->add('agenceid', EntityType::class, ['class' => Agence::class, 'choice_label' => 'nom', 'label' => 'Agence']);
+            ->add('agenceid', EntityType::class, ['class' => Agence::class, 'choice_label' => 'email', 'label' => 'Agence']);
     }
 
     /**

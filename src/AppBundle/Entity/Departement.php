@@ -38,25 +38,10 @@ class Departement
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Agence", inversedBy="departementid")
-     * @ORM\JoinTable(name="zone_chalandise",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="Departementid", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="Agenceid", referencedColumnName="id")
-     *   }
-     * )
+     * @ORM\ManyToOne(targetEntity="Agence", inversedBy="departementid")
+     *
      */
     private $agenceid;
-
-    /**
-     * Constructor.
-     */
-    public function __construct()
-    {
-        $this->agenceid = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Get id.
@@ -116,33 +101,13 @@ class Departement
         return $this->code;
     }
 
-    /**
-     * Add agenceid.
-     *
-     * @param \AppBundle\Entity\Agence $agenceid
-     *
-     * @return Departement
-     */
-    public function addAgenceid(\AppBundle\Entity\Agence $agenceid)
-    {
-        $this->agenceid[] = $agenceid;
 
-        return $this;
+    public function __toString()
+    {
+        return $this->libelle;
     }
 
     /**
-     * Remove agenceid.
-     *
-     * @param \AppBundle\Entity\Agence $agenceid
-     */
-    public function removeAgenceid(\AppBundle\Entity\Agence $agenceid)
-    {
-        $this->agenceid->removeElement($agenceid);
-    }
-
-    /**
-     * Get agenceid.
-     *
      * @return \Doctrine\Common\Collections\Collection
      */
     public function getAgenceid()
@@ -150,8 +115,14 @@ class Departement
         return $this->agenceid;
     }
 
-    public function __toString()
+    /**
+     * @param \Doctrine\Common\Collections\Collection $agenceid
+     * @return Departement
+     */
+    public function setAgenceid($agenceid)
     {
-        return $this->libelle;
+        $this->agenceid = $agenceid;
+        return $this;
     }
+
 }

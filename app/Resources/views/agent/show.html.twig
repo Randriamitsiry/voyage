@@ -4,7 +4,6 @@
         <div class="widget-user-header bg-info-active">
             <h2 class="widget-user-username">{{ agent.nom ~ " " ~  agent.prenom}}</h2>
             <h3>[{{ agent.initiales }}]</h3>
-            <h5 class="widget-user-desc">{{ agent.agenceid.nom }}</h5>
         </div>
         <div class="widget-user-image">
             <img class="img-circle elevation-8" src="{{ asset('images/agent/'~agent.photo) }}" alt="Photo de l'agent" style="width: 100px !important; height: 100px !important; border-radius: 70% !important;">
@@ -21,8 +20,8 @@
                 <!-- /.col -->
                 <div class="col-sm-4 border-right">
                     <div class="description-block">
-                        <h5 class="description-header">Objectif</h5>
-                        <span class="description-text">{{ agent.objectif }}</span>
+                        <h5 class="description-header">Email</h5>
+                        <span class="description-text">{{ agent.email }}</span>
                     </div>
                 </div>
                 <!-- /.col -->
